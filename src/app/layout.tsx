@@ -81,12 +81,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f2efe7",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
-
-// Runs before paint so a saved theme never flashes the default palette.
-const themeScript = `try{if(localStorage.getItem("a2o-theme")==="blue"){document.documentElement.dataset.theme="blue"}}catch(e){}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -94,10 +91,15 @@ const jsonLd = {
   name: site.legalName,
   url: site.domain,
   email: site.email,
+  telephone: site.phone,
   description: site.description,
   areaServed: ["United Kingdom", "Ireland"],
   address: {
     "@type": "PostalAddress",
+    streetAddress: `${site.address.line1}, ${site.address.line2}`,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    postalCode: site.address.postcode,
     addressCountry: "GB",
   },
   knowsAbout: [
@@ -117,10 +119,8 @@ export default function RootLayout({
       lang="en-GB"
       data-scroll-behavior="smooth"
       className={`${sans.variable} ${serif.variable} ${mono.variable}`}
-      suppressHydrationWarning
     >
       <body>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -39,7 +39,7 @@ export default function AccessibilityPage() {
               panels, with visible focus styles.
             </li>
             <li>
-              Colour combinations chosen for contrast on the warm paper
+              Colour combinations chosen for contrast on the white
               background and on dark bands.
             </li>
             <li>

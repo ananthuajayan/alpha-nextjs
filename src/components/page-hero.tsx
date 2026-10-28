@@ -7,6 +7,7 @@ type PageHeroProps = {
   deck: ReactNode;
   meta?: { label: string; value: string }[];
   index?: string;
+  children?: ReactNode;
 };
 
 export function PageHero({
@@ -15,6 +16,7 @@ export function PageHero({
   deck,
   meta,
   index = "α",
+  children,
 }: PageHeroProps) {
   return (
     <header className="page-hero">
@@ -38,6 +40,7 @@ export function PageHero({
                 ))}
               </dl>
             ) : null}
+            {children}
           </div>
         </div>
       </div>

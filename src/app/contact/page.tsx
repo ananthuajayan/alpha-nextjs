@@ -75,8 +75,17 @@ export default function ContactPage() {
             </div>
 
             <div className="contact-direct">
-              <p>Prefer email?</p>
+              <p>Direct contact</p>
               <a href={`mailto:${site.email}`}>{site.email}</a>
+              <a className="contact-direct-phone" href={`tel:${site.phoneHref}`}>
+                {site.phone}
+              </a>
+              <address className="contact-direct-address">
+                {site.address.line1}, {site.address.line2}
+                <br />
+                {site.address.city}, {site.address.region}{" "}
+                {site.address.postcode}
+              </address>
               <p className="contact-direct-note">
                 References are available privately under NDA. Client names are
                 never published.

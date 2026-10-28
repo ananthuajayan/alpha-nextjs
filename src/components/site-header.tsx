@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 import { ArrowUpRight, CloseIcon, MenuIcon } from "@/components/icons";
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -77,7 +76,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="header-actions">
-            <ThemeToggle />
             <Link className="btn btn--accent header-cta" href={site.cta.href}>
               {site.cta.label}
               <ArrowUpRight size={14} />
@@ -129,6 +127,9 @@ export function SiteHeader() {
           </Link>
           <a className="mobile-email" href={`mailto:${site.email}`}>
             {site.email}
+          </a>
+          <a className="mobile-email" href={`tel:${site.phoneHref}`}>
+            {site.phone}
           </a>
           <p>UK AI automation for regulated industries.</p>
         </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { site } from "@/content/site";
 import { ArrowUpRight, CheckIcon } from "@/components/icons";
 
 type Fields = {
@@ -98,7 +99,7 @@ export function ContactForm() {
         <p>
           A senior member of the team will reply directly. If it is easier, you
           can email{" "}
-          <a href="mailto:hello@alpha2omega.ai">hello@alpha2omega.ai</a>.
+          <a href={`mailto:${site.email}`}>{site.email}</a>.
         </p>
         <button
           type="button"
@@ -288,7 +289,7 @@ export function ContactForm() {
       {status === "error" ? (
         <p className="form-error form-error--box" role="alert">
           Something went wrong sending the form. Please email{" "}
-          <a href="mailto:hello@alpha2omega.ai">hello@alpha2omega.ai</a> and we
+          <a href={`mailto:${site.email}`}>{site.email}</a> and we
           will pick it up from there.
         </p>
       ) : null}

@@ -2,7 +2,7 @@
 
 The marketing site for **Alpha2Omega** — AI automation for regulated industries. Built with Next.js 16 (App Router), React 19, TypeScript and a hand-built CSS design system.
 
-The content follows the Oct 2026 content pack: seven core pages, six anonymised case studies, measured numbers only, and British English throughout. The visual direction is restrained and editorial — warm paper, ink, one signal colour, serif italic accents and generous white space. No dark “AI aesthetic”, no particle effects, no client logos.
+The content follows the Oct 2026 content pack: seven core pages, six anonymised case studies, measured numbers only, and British English throughout. The visual direction is restrained and editorial — white paper, navy ink, one blue signal colour, serif italic accents and generous white space. No dark “AI aesthetic”, no particle effects, no client logos.
 
 ## Run it
 
@@ -26,7 +26,7 @@ Node 20+ recommended. The project is a standard Next.js app — deploy to Vercel
 | `/case-studies/[slug]` | Case-study template: profile → challenge → what we built → results → technology notes |
 | `/how-we-work` | Audit → proof of concept → production, delivery models and the residency promise |
 | `/about` | Positioning, difference, team shape, data stance |
-| `/contact` | Enquiry form, what happens next, direct email |
+| `/contact` | Enquiry form, what happens next, direct email, phone and address |
 | `/privacy`, `/accessibility` | Legal and accessibility statements |
 | `/api/contact` | Form endpoint (JSON, validated) |
 | `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest` | SEO and PWA metadata |
@@ -54,7 +54,7 @@ Brand tokens (colours, fonts, spacing, container width) are the custom propertie
 
 Copy `.env.example` to `.env.local` and set the webhook before launch. You can also swap in Resend/Postmark inside `src/app/api/contact/route.ts`.
 
-The public address used across the site is `hello@alpha2omega.ai` (defined in `src/content/site.ts`). Change it there if the real inbox differs.
+The public contact details used across the site are `bijesh.babu@alpha2omega.ai`, `+44 7718 998946` and Bartle House, Oxford Court, Manchester, England, M2 3WQ (defined in `src/content/site.ts`). Change them there if they differ.
 
 ## Content and launch rules
 
@@ -82,7 +82,7 @@ Metrics that still need Bijesh’s sign-off are listed in the original content p
 ## Design notes
 
 - **Type:** Inter Tight (UI/display), Instrument Serif italic (one accent phrase per headline), IBM Plex Mono (labels and metadata).
-- **Palette:** warm paper `#f2efe7`, ink `#161611`, signal orange `#cf4a22`, deep forest `#10251e`, mint `#a8e3ce`.
+- **Palette:** white `#ffffff`, ink `#0b1a33`, signal blue `#1d5bd6`, deep navy `#0a2447`, ice blue `#a9ccff`.
 - **Pattern:** mono `//` section labels, hairline rules, numbered sections, big measured numbers, editorial case-study cards, one dark data-residency band.
 - **Anti-patterns avoided:** glowing gradients, particle fields, generic “AI” stock imagery, logo walls, invented testimonials.
 

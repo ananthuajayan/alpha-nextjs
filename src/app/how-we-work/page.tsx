@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { deliveryModels, engagement, faqs } from "@/content/faqs";
+import { site } from "@/content/site";
 import { PageHero } from "@/components/page-hero";
 import { SectionLabel } from "@/components/section-label";
 import { FaqList } from "@/components/faq-list";
@@ -239,7 +240,7 @@ export default function HowWeWorkPage() {
             </h2>
             <p>
               Still unsure? Email{" "}
-              <a href="mailto:hello@alpha2omega.ai">hello@alpha2omega.ai</a>.
+              <a href={`mailto:${site.email}`}>{site.email}</a>.
             </p>
           </div>
           <FaqList items={[faqs[0], faqs[1], faqs[2], faqs[3], faqs[5]]} />

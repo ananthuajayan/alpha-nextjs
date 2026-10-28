@@ -2,7 +2,17 @@ export const site = {
   name: "Alpha2Omega",
   legalName: "Alpha2Omega.ai",
   domain: "https://alpha2omega.ai",
-  email: "hello@alpha2omega.ai",
+  email: "bijesh.babu@alpha2omega.ai",
+  phone: "+44 7718 998946",
+  phoneHref: "+447718998946",
+  address: {
+    line1: "Bartle House",
+    line2: "Oxford Court",
+    city: "Manchester",
+    region: "England",
+    postcode: "M2 3WQ",
+    country: "United Kingdom",
+  },
   description:
     "Alpha2Omega builds and runs AI automation for healthcare, financial services and document-heavy businesses — document extraction, voice agents and workflow automation, delivered on UK-resident infrastructure.",
   shortDescription:
