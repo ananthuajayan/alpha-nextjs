@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>98% Field Accuracy at Bureau Scale — Case Study</title>
+<meta name="description" content="AI extraction for an Irish scanning bureau: 97.9% on purchase order numbers, 96.3% on handwritten GRNs, delivered in the bureau&#39;s existing import format.">
+<link rel="canonical" href="https://alpha2omega.ai/case-studies/bureau-document-extraction/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Alpha2Omega.ai">
+<meta property="og:title" content="98% Field Accuracy at Bureau Scale — Case Study">
+<meta property="og:description" content="AI extraction for an Irish scanning bureau: 97.9% on purchase order numbers, 96.3% on handwritten GRNs, delivered in the bureau&#39;s existing import format.">
+<meta property="og:url" content="https://alpha2omega.ai/case-studies/bureau-document-extraction/">
+<meta property="og:image" content="https://alpha2omega.ai/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1620" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/x-icon" href="../../assets/images/Icon.ico">
+<link rel="stylesheet" href="../../assets/site.css?v=5.5">
+<script src="../../components/header/header.js?v=5.4"></script>
+<script src="../../components/footer/footer.js?v=5.4"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://alpha2omega.ai/#org","name":"Alpha2Omega.ai","legalName":"JN21:6 Ltd","url":"https://alpha2omega.ai/","logo":"https://alpha2omega.ai/assets/logo.png","identifier":{"@type":"PropertyValue","propertyID":"Companies House","value":"12927512"},"address":[{"@type":"PostalAddress","addressLocality":"Manchester","addressCountry":"GB"},{"@type":"PostalAddress","addressLocality":"Newcastle upon Tyne","addressCountry":"GB"}],"sameAs":["[LINKEDIN_URL]"]},{"@type":"Article","headline":"98% field accuracy at bureau scale","description":"AI extraction for an Irish scanning bureau: 97.9% on purchase order numbers, 96.3% on handwritten GRNs, delivered in the bureau\u0027s existing import format.","url":"https://alpha2omega.ai/case-studies/bureau-document-extraction/","datePublished":"2026-10-03","author":{"@id":"https://alpha2omega.ai/#org"},"publisher":{"@id":"https://alpha2omega.ai/#org"},"image":"https://alpha2omega.ai/og/default.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://alpha2omega.ai/"},{"@type":"ListItem","position":2,"name":"Case studies","item":"https://alpha2omega.ai/case-studies/"},{"@type":"ListItem","position":3,"name":"Bureau document extraction","item":"https://alpha2omega.ai/case-studies/bureau-document-extraction/"}]}]}</script>
+</head>
+<body class="page page-case-studies page-bureau-document-extraction">
+<site-header root="../../" current="case-studies"></site-header>
+<main id="main">
+<div class="pg" data-route="/case-studies/bureau-document-extraction/">
+<nav class="crumbs wrap" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../case-studies/">Case studies</a></li><li aria-current="page">Bureau document extraction</li></ol></nav>
+<header class="page-head glow">
+  <div class="wrap">
+    <p class="eyebrow">Case study · Data extraction</p>
+    <h1>98% field accuracy at <span class="grad">bureau scale.</span></h1>
+    <p class="lead">How an Irish document management and scanning bureau replaced manual indexing with AI extraction, without changing a single downstream system.</p>
+  </div>
+</header>
+
+<section class="chapter tight">
+  <div class="wrap">
+    <div class="results">
+      <div class="result"><div class="n">97.9%</div><p>accuracy on purchase order numbers</p></div>
+      <div class="result"><div class="n">96.3%</div><p>accuracy on handwritten goods-received numbers</p></div>
+      <div class="result"><div class="n">1.7%</div><p>of a 7,055-document batch flagged for review</p></div>
+      <div class="result"><div class="n">~20,000</div><p>documents a day platform throughput</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter alt">
+  <div class="wrap cs">
+    <dl class="facts">
+      <div><dt>Client</dt><dd>An Irish document management and scanning bureau</dd></div>
+      <div><dt>Sector</dt><dd><a href="../../data-extraction/">Data extraction</a></dd></div>
+      <div><dt>Product</dt><dd><a href="../../data-extraction/docbox/">DocBox Scanner</a></dd></div>
+      <div><dt>Data residency</dt><dd>EU (Dublin)</dd></div>
+      <div><dt>Status</dt><dd>Multi-year production commitment</dd></div>
+    </dl>
+    <div class="prose">
+      <h2 style="margin-top:0">Client context</h2>
+      <p>The client is an Irish document management and scanning bureau. It scans and indexes documents, then delivers the data in an Access-based import format that downstream systems depend on.</p>
+
+      <h2>The manual process and its cost</h2>
+      <p>The bureau indexed around 25,000 scanned pages a month by hand. That took 3 to 3.5 full-time staff doing data entry, at 18 to 60 seconds per document. Between 5 and 10% of the work had to be redone.</p>
+      <p>Volumes were growing 15 to 20% a year, so the problem was getting bigger. Whatever replaced the manual work had to deliver output in the bureau's existing import format, unchanged.</p>
+
+      <h2>What we built</h2>
+      <ul>
+        <li>An AI extraction pipeline with a visual validation layer and multi-prompt self-correction</li>
+        <li>Automatic routing of low-confidence documents to human review</li>
+        <li>Results returned in the client's exact import format over secure SFTP</li>
+        <li>All processing EU-resident, in Dublin</li>
+      </ul>
+
+      <h2>The accuracy trial</h2>
+      <p>We didn't ask the bureau to take accuracy on trust. We measured it on the client's own documents, against ground truth, before they committed.</p>
+      <ol>
+        <li><strong>Alpha:</strong> a compatibility test on a sample batch of the bureau's own documents.</li>
+        <li><strong>Beta:</strong> a ground-truth accuracy trial on 4,177 hospital proof-of-delivery documents, including handwritten reference numbers. We measured every field against verified answers.</li>
+        <li><strong>Build and Omega:</strong> a production engagement, now running at volume.</li>
+      </ol>
+
+      <aside class="roi-box" aria-label="Return on investment">
+        <h2>Return on investment</h2>
+        <dl>
+          <div><dt>The cost of the problem</dt><dd>3 to 3.5 full-time staff keying data from 25,000 pages a month, with 5 to 10% rework and volumes growing 15 to 20% a year.</dd></div>
+          <div><dt>Measured return</dt><dd>86.5% of documents fully correct first time in a ground-truth trial, and 98.3% processed without review in a 7,055-document batch.</dd></div>
+        </dl>
+      </aside>
+      <h2>Results</h2>
+      <p>On the ground-truth batch of 4,177 documents:</p>
+      <ul>
+        <li>97.9% accuracy on purchase order numbers</li>
+        <li>96.3% accuracy on handwritten goods-received numbers</li>
+        <li>86.5% of documents fully correct, with the rest automatically flagged for review</li>
+      </ul>
+      <p>A second batch of 7,055 documents ran with only 1.7% flagged for human review, so 98.3% went through without anyone touching them. The platform handles up to around 20,000 documents a day.</p>
+
+      <aside class="callout">
+        <h2>What this means if you run a bureau</h2>
+        <p>Your team stops keying every document and only checks the fields the system flags. The output arrives in your existing import format, so nothing downstream changes. It runs white-label, so your client stays your client. And you see the accuracy on your own documents before you commit.</p>
+      </aside>
+
+      <h2>What changed operationally</h2>
+      <ul>
+        <li>Staff check a small review queue instead of keying every document by hand</li>
+        <li>Downstream systems carried on exactly as before, with the same import format</li>
+        <li>Data stays in the EU, in Dublin</li>
+        <li>The review queue is built in and visible, so the bureau always knows what needs a person</li>
+      </ul>
+
+      <h2>Where the relationship went next</h2>
+      <p class="next">The bureau moved from trial to a multi-year production commitment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter cta-band"><div class="wrap">
+  <h2>Test it on your documents.</h2>
+  <p class="lead">We'll measure accuracy against your own ground truth before you commit.</p>
+  <div class="ctas"><a class="btn" href="../../contact/">Send us a sample batch</a><a class="more" href="../../case-studies/">More case studies</a></div>
+</div></section>
+</div>
+</main>
+<site-footer root="../../"></site-footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
