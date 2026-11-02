@@ -10,7 +10,7 @@ import { ArrowRight, ArrowUpRight, CheckIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Document intelligence, AI voice agents, workflow automation and a fixed-fee AI Audit — built and run for regulated industries.",
+    "Data extraction, GP AI operating system, Orthodontic referral triage, and applied automation platforms — built and run for regulated industries.",
   alternates: { canonical: "/services" },
 };
 

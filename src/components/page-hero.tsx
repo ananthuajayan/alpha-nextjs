@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionLabel } from "@/components/section-label";
+export { HomeHero } from "@/components/home-hero";
 
 type PageHeroProps = {
   eyebrow: string;

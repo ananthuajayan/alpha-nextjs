@@ -106,6 +106,27 @@ export function CloseIcon({ className, size = 22 }: IconProps) {
   );
 }
 
+export function ChevronDown({ className, size = 14 }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="m4 6 4 4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function MailIcon({ className, size = 18 }: IconProps) {
   return (
     <svg

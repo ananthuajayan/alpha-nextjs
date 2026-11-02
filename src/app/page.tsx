@@ -5,7 +5,7 @@ import { services } from "@/content/services";
 import { caseStudies } from "@/content/case-studies";
 import { engagement, faqs } from "@/content/faqs";
 import { SectionLabel } from "@/components/section-label";
-import { PageHero } from "@/components/page-hero";
+import { HomeHero } from "@/components/home-hero";
 import { ProofStrip } from "@/components/proof-strip";
 import { CaseCard } from "@/components/case-card";
 import { FaqList } from "@/components/faq-list";
@@ -28,42 +28,7 @@ export default function HomePage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="UK AI automation for regulated industries"
-        index="01"
-        title={
-          <>
-            We turn your slowest <span className="nowrap">back-office</span>{" "}
-            work into <em>same-day work.</em>
-          </>
-        }
-        deck="Alpha2Omega builds and runs AI automation for healthcare, financial services and document-heavy businesses — document extraction, voice agents and workflow automation, delivered on UK-resident infrastructure."
-      >
-        <div className="hero-actions">
-          <Link className="btn btn--accent btn--lg" href="/contact">
-            Book an AI Audit
-            <ArrowUpRight size={15} />
-          </Link>
-          <a className="text-link" href="#results">
-            See the results
-            <ArrowRight size={15} />
-          </a>
-        </div>
-        <ul className="hero-trust" aria-label="At a glance">
-          <li>
-            <ShieldIcon size={15} />
-            UK or EU data residency
-          </li>
-          <li>
-            <CheckIcon size={15} />
-            Human review built in
-          </li>
-          <li>
-            <CheckIcon size={15} />
-            NHS security experience
-          </li>
-        </ul>
-      </PageHero>
+      <HomeHero />
 
       <div className="container">
         <ProofStrip note="Measured on live client work — each case study shows the detail." />

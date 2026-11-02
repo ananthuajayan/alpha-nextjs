@@ -43,7 +43,11 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      <section className="section section--tint" aria-labelledby="other-heading">
+      <section
+        id="other-work"
+        className="section section--tint"
+        aria-labelledby="other-heading"
+      >
         <div className="container">
           <div className="section-head">
             <div>
@@ -63,6 +67,7 @@ export default function CaseStudiesPage() {
           <div className="case-grid">
             {otherWork.map((item, index) => (
               <article
+                id={index === 0 ? "orthodontics" : undefined}
                 className="case-card case-card--other"
                 key={item.title}
                 data-featured="false"

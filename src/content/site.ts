@@ -77,3 +77,30 @@ export const sectorFilters = [
   { key: "logistics", label: "Logistics" },
   { key: "sales", label: "Sales" },
 ] as const;
+
+export const serviceDropdownItems = [
+  {
+    label: "Data extraction",
+    href: "/services/data-extraction",
+    description: "Scanned documents & handwriting into structured data",
+    index: "01",
+  },
+  {
+    label: "GP AI operating system",
+    href: "/services/gp-surgeries",
+    description: "NHS voice reception, triage & clinical letter coding",
+    index: "02",
+  },
+  {
+    label: "Orthodontics",
+    href: "/services/orthodontics",
+    description: "AI photo screening & clinical referral triage",
+    index: "03",
+  },
+  {
+    label: "Other work",
+    href: "/services/other-work",
+    description: "Quantities, retention audits & bespoke platforms",
+    index: "04",
+  },
+] as const;

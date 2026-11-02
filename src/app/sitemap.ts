@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { caseStudies } from "@/content/case-studies";
-import { services } from "@/content/services";
+import { getAllInnerPages, services } from "@/content/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/accessibility", priority: 0.2 },
   ];
 
+  const innerPages = getAllInnerPages();
+
   return [
     ...routes.map((route) => ({
       url: `${site.domain}${route.path}`,
@@ -28,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...innerPages.map((inner) => ({
+      url: `${site.domain}/services/${inner.parentSlug}/${inner.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
     ...caseStudies.map((study) => ({
       url: `${site.domain}/case-studies/${study.slug}`,
