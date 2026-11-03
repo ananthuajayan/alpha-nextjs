@@ -45,6 +45,27 @@ export function ArrowRight({ className, size = 16 }: IconProps) {
   );
 }
 
+export function ArrowLeft({ className, size = 16 }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="M13.5 8h-11M6.5 12l-4-4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function CheckIcon({ className, size = 18 }: IconProps) {
   return (
     <svg
@@ -120,6 +141,48 @@ export function ChevronDown({ className, size = 14 }: IconProps) {
         d="m4 6 4 4 4-4"
         stroke="currentColor"
         strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function ChevronLeft({ className, size = 16 }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="m10 12-4-4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function ChevronRight({ className, size = 16 }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="m6 4 4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

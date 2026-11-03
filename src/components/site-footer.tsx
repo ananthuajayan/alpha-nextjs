@@ -97,8 +97,6 @@ export function SiteFooter() {
           Client names are withheld; every case study is anonymised to a sector
           description.
         </p>
-
-        <div className="footer-word" aria-hidden="true" />
       </div>
     </footer>
   );

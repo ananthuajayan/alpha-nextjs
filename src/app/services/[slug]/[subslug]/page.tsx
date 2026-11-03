@@ -156,7 +156,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                 <span
                   style={{
                     fontFamily: "var(--font-code)",
-                    fontSize: "9px",
+                    fontSize: "15px",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     color: "var(--muted)",
@@ -168,8 +168,8 @@ export default async function ServiceInnerPage({ params }: Params) {
                 </span>
                 <p
                   style={{
-                    fontSize: "13px",
-                    lineHeight: 1.5,
+                    fontSize: "15px",
+                    lineHeight: 1.55,
                     color: "var(--ink-2)",
                     margin: 0,
                   }}
@@ -224,7 +224,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                   <span
                     style={{
                       fontFamily: "var(--font-code)",
-                      fontSize: "9px",
+                      fontSize: "15px",
                       textTransform: "uppercase",
                       letterSpacing: "0.1em",
                       color: "var(--accent)",
@@ -235,7 +235,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                   </span>
                   <p
                     style={{
-                      fontSize: "14px",
+                      fontSize: "15px",
                       fontWeight: 500,
                       color: "var(--ink)",
                       margin: "4px 0 0 0",
@@ -247,10 +247,10 @@ export default async function ServiceInnerPage({ params }: Params) {
                 <Link
                   href={innerPage.proofLink.href}
                   className="btn btn--accent"
-                  style={{ fontSize: "12px", padding: "8px 14px" }}
+                  style={{ fontSize: "15px", padding: "8px 14px" }}
                 >
                   Read case study
-                  <ArrowUpRight size={13} />
+                  <ArrowUpRight size={15} />
                 </Link>
               </div>
             ) : null}
@@ -275,9 +275,9 @@ export default async function ServiceInnerPage({ params }: Params) {
                 }}
               >
                 <span style={{ color: "var(--accent)", display: "inline-flex" }}>
-                  <ShieldIcon size={15} />
+                  <ShieldIcon size={16} />
                 </span>
-                <h2 style={{ margin: 0, fontSize: "14px" }}>
+                <h2 style={{ margin: 0, fontSize: "16px" }}>
                   Governance & Compliance
                 </h2>
               </div>
@@ -298,7 +298,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                       display: "flex",
                       gap: "8px",
                       alignItems: "flex-start",
-                      fontSize: "12px",
+                      fontSize: "15px",
                       lineHeight: 1.45,
                       color: "var(--ink-2)",
                     }}
@@ -311,7 +311,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                         display: "inline-flex",
                       }}
                     >
-                      <CheckIcon size={13} />
+                      <CheckIcon size={15} />
                     </span>
                     <span>{item}</span>
                   </li>
@@ -340,7 +340,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                       <span
                         style={{
                           fontFamily: "var(--font-code)",
-                          fontSize: "8.5px",
+                          fontSize: "15px",
                           textTransform: "uppercase",
                           letterSpacing: "0.1em",
                           color: "var(--accent)",
@@ -351,7 +351,7 @@ export default async function ServiceInnerPage({ params }: Params) {
                       </span>
                       <strong
                         style={{
-                          fontSize: "13px",
+                          fontSize: "15px",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
@@ -372,7 +372,7 @@ export default async function ServiceInnerPage({ params }: Params) {
               <Link
                 href={`/services/${slug}`}
                 className="text-link"
-                style={{ fontSize: "13px" }}
+                style={{ fontSize: "15px" }}
               >
                 View all of {parentService.title}
                 <ArrowRight size={13} />

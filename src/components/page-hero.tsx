@@ -22,9 +22,6 @@ export function PageHero({
   return (
     <header className="page-hero">
       <div className="page-hero-grid" aria-hidden="true" />
-      <div className="page-hero-mark" aria-hidden="true">
-        {index}
-      </div>
       <div className="container">
         <SectionLabel>{eyebrow}</SectionLabel>
         <div className="page-hero-main">

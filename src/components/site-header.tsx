@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { serviceDropdownItems, site } from "@/content/site";
 import {
-  ArrowRight,
   ArrowUpRight,
   ChevronDown,
   CloseIcon,
@@ -164,7 +163,7 @@ export function SiteHeader() {
                     >
                       <div className="nav-dropdown-head">
                         <span className="nav-dropdown-kicker">
-                          Capabilities & solutions
+                          Capabilities & Solutions
                         </span>
                       </div>
                       <div className="nav-dropdown-list">
@@ -183,10 +182,6 @@ export function SiteHeader() {
                               <span className="nav-dropdown-item-title">
                                 {subItem.label}
                               </span>
-                              <ArrowRight
-                                size={13}
-                                className="nav-dropdown-item-arrow"
-                              />
                             </div>
                             <p className="nav-dropdown-item-desc">
                               {subItem.description}
@@ -200,8 +195,8 @@ export function SiteHeader() {
                           className="nav-dropdown-foot-link"
                           onClick={() => setServicesDropdownOpen(false)}
                         >
-                          <span>All services & delivery models</span>
-                          <ArrowUpRight size={13} />
+                          <span>All Services & Delivery Models</span>
+                          <ArrowUpRight size={15} />
                         </Link>
                       </div>
                     </div>
@@ -306,28 +301,11 @@ export function SiteHeader() {
                         className="mobile-subnav-link"
                         onClick={() => setOpen(false)}
                       >
-                        <span className="mobile-subnav-index">
-                          {subItem.index}
+                        <span className="mobile-subnav-title">
+                          {subItem.label}
                         </span>
-                        <div className="mobile-subnav-text">
-                          <span className="mobile-subnav-title">
-                            {subItem.label}
-                          </span>
-                          <span className="mobile-subnav-desc">
-                            {subItem.description}
-                          </span>
-                        </div>
-                        <ArrowRight size={14} className="mobile-subnav-arrow" />
                       </Link>
                     ))}
-                    <Link
-                      href="/services"
-                      className="mobile-subnav-all"
-                      onClick={() => setOpen(false)}
-                    >
-                      <span>View all services & models</span>
-                      <ArrowUpRight size={13} />
-                    </Link>
                   </div>
                 </div>
               );

@@ -42,12 +42,12 @@
   --green-glow: rgba(16, 110, 147, 0.12);
 
   --font-body: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-serif), Georgia, "Times New Roman", serif;
-  --font-code: var(--font-mono), "Courier New", monospace;
+  --font-display: var(--font-body);
+  --font-code: var(--font-body);
 
   --container: 1220px;
   --gutter: clamp(20px, 4vw, 44px);
-  --header-h: 74px;
+  --header-h: 82px;
   --radius: 3px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -74,7 +74,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.55;
   font-weight: 400;
   letter-spacing: -0.008em;
@@ -111,6 +111,7 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: var(--font-body);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.02;
@@ -119,12 +120,20 @@ h4 {
 
 h1 em,
 h2 em,
-h3 em {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+h3 em,
+h4 em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  letter-spacing: inherit;
   text-wrap: balance;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 a {
@@ -163,7 +172,7 @@ svg {
   background: var(--ink);
   color: var(--paper);
   border-radius: var(--radius);
-  font-size: 13px;
+  font-size: 15px;
   transition: top 0.2s var(--ease);
 }
 
@@ -178,17 +187,30 @@ svg {
   align-items: center;
   gap: 8px;
   font-family: var(--font-code);
-  font-size: 10.5px;
-  font-weight: 400;
-  letter-spacing: 0.13em;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
 }
 
 .eyebrow > span {
   color: var(--accent);
   letter-spacing: 0;
+  font-weight: 600;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .nowrap {
@@ -214,7 +236,7 @@ svg {
   width: fit-content;
   padding-bottom: 3px;
   border-bottom: 1px solid var(--line-strong);
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.005em;
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
@@ -257,7 +279,7 @@ svg {
   background: var(--ink);
   color: var(--paper-raised);
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.005em;
@@ -306,7 +328,7 @@ svg {
 .btn--lg {
   min-height: 50px;
   padding: 14px 23px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .btn:disabled {
@@ -349,7 +371,7 @@ svg {
 }
 
 .brand-logo {
-  height: 48px;
+  height: 58px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -385,7 +407,7 @@ svg {
 
 .brand-mark-small {
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   align-self: center;
   margin: 0 1px;
   opacity: 0.75;
@@ -414,7 +436,7 @@ svg {
 .nav-link {
   position: relative;
   padding: 6px 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.005em;
   color: var(--muted);
@@ -498,7 +520,8 @@ svg {
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  width: 320px;
+  min-width: 380px;
+  width: max-content;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -536,31 +559,32 @@ svg {
 }
 
 .nav-dropdown-head {
-  padding: 9px 14px 7px;
+  padding: 12px 18px 10px;
   background: var(--paper-tint);
   border-bottom: 1px solid var(--line);
 }
 
 .nav-dropdown-kicker {
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted-2);
+  color: var(--ink-2);
 }
 
 .nav-dropdown-list {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  gap: 2px;
+  padding: 8px 6px;
+  gap: 3px;
 }
 
 .nav-dropdown-item {
-  display: block;
-  padding: 8px 10px 9px;
-  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  border-radius: var(--radius);
   text-decoration: none;
   transition: background 0.18s var(--ease);
 }
@@ -571,23 +595,27 @@ svg {
 
 .nav-dropdown-item-header {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .nav-dropdown-item-index {
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
+  font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--accent);
   flex-shrink: 0;
+  width: 22px;
 }
 
 .nav-dropdown-item-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
   color: var(--ink);
+  white-space: nowrap;
+  display: block;
   transition: color 0.18s var(--ease);
 }
 
@@ -595,31 +623,17 @@ svg {
   color: var(--accent);
 }
 
-.nav-dropdown-item-arrow {
-  margin-left: auto;
-  color: var(--muted-2);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease),
-    color 0.18s var(--ease);
-}
-
-.nav-dropdown-item:hover .nav-dropdown-item-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--accent);
-}
-
 .nav-dropdown-item-desc {
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.4;
-  color: var(--muted);
-  margin-top: 2px;
-  padding-left: 17px;
+  color: var(--ink-2);
+  margin-top: 3px;
+  padding-left: 32px;
+  white-space: nowrap;
 }
 
 .nav-dropdown-foot {
-  padding: 8px 14px;
+  padding: 12px 18px;
   background: var(--paper-tint);
   border-top: 1px solid var(--line);
 }
@@ -629,11 +643,11 @@ svg {
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-2);
   text-decoration: none;
   transition: color 0.18s var(--ease);
 }
@@ -649,9 +663,11 @@ svg {
 }
 
 .header-cta {
-  min-height: 38px;
-  padding: 9px 14px;
-  font-size: 12.5px;
+  min-height: 40px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius);
 }
 
 /* ---------- menu toggle ---------- */
@@ -696,7 +712,7 @@ svg {
   padding-top: 16px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 9.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -752,7 +768,7 @@ svg {
   padding: 10px 14px;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -792,7 +808,7 @@ svg {
   justify-content: space-between;
   gap: 8px;
   font-family: var(--font-code);
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -865,7 +881,7 @@ svg {
   padding: 2px 4px;
   border: 1px dashed var(--stamp-line);
   font-family: var(--font-code);
-  font-size: 6.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--muted-2);
   transform: rotate(-4deg);
@@ -878,7 +894,7 @@ svg {
 
 .demo-fields-title {
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -903,14 +919,14 @@ svg {
 .demo-field-key {
   grid-column: 1 / -1;
   font-family: var(--font-code);
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .demo-field-value {
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.3;
   overflow: hidden;
@@ -923,7 +939,7 @@ svg {
   padding: 2px 5px;
   border-radius: 2px;
   font-family: var(--font-code);
-  font-size: 7px;
+  font-size: 15px;
   line-height: 1.4;
   letter-spacing: 0.03em;
   white-space: nowrap;
@@ -943,7 +959,7 @@ svg {
   display: flex;
   gap: 7px;
   margin-top: 11px;
-  font-size: 9.5px;
+  font-size: 15px;
   line-height: 1.4;
   color: var(--muted);
 }
@@ -964,7 +980,7 @@ svg {
   padding: 9px 14px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 7.5px;
+  font-size: 15px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1017,7 +1033,7 @@ svg {
 
 .demo-float span {
   font-family: var(--font-code);
-  font-size: 7px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.62);
@@ -1041,7 +1057,7 @@ svg {
 .demo-caption {
   margin-top: 16px;
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -1104,18 +1120,17 @@ svg {
 .proof-label {
   max-width: 23ch;
   margin-top: 9px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.45;
   color: var(--muted);
 }
 
 .proof-note {
-  padding: 11px 0;
+  padding: 12px 0;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.03em;
   color: var(--muted-2);
   text-align: right;
 }
@@ -1191,7 +1206,7 @@ svg {
 
 .value-index {
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--accent);
 }
@@ -1206,7 +1221,7 @@ svg {
 
 .value-item p {
   max-width: 36ch;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.62;
   color: var(--muted);
 }
@@ -1231,20 +1246,21 @@ svg {
 
 .service-index {
   font-family: var(--font-code);
-  font-size: 9.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--muted-2);
 }
 
 .service-title {
+  font-family: var(--font-body);
   font-size: clamp(1.15rem, 1.7vw, 1.48rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.16;
   letter-spacing: -0.032em;
 }
 
 .service-outcome {
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -1344,7 +1360,7 @@ svg {
   padding-bottom: 13px;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1374,7 +1390,7 @@ svg {
 .case-card-metric-label {
   max-width: 25ch;
   margin-top: 9px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.45;
   color: var(--muted);
 }
@@ -1396,7 +1412,7 @@ svg {
 
 .case-card-copy p {
   margin-top: 9px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
 }
@@ -1414,7 +1430,7 @@ svg {
   padding-top: 13px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -1449,14 +1465,14 @@ svg {
 
 .case-card-badge {
   position: absolute;
-  top: 52px;
+  top: 48px;
   right: 22px;
-  padding: 3px 6px;
+  padding: 4px 10px;
   border: 1px solid var(--accent);
-  border-radius: 2px;
+  border-radius: 4px;
   font-family: var(--font-code);
-  font-size: 7px;
-  letter-spacing: 0.08em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent);
   background: var(--paper-raised);
@@ -1505,14 +1521,14 @@ svg {
 
 .process-index {
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--accent);
 }
 
 .process-label {
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1521,7 +1537,7 @@ svg {
 .process-meta {
   margin-top: 18px;
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted-2);
@@ -1537,7 +1553,7 @@ svg {
 
 .process-step > p {
   max-width: 34ch;
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -1550,7 +1566,7 @@ svg {
   padding-top: 13px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -1654,14 +1670,14 @@ svg {
 
 .residency-list dt {
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--mint);
 }
 
 .residency-list dd {
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.78);
 }
@@ -1678,25 +1694,28 @@ svg {
 
 .journey-list > div {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 20px;
-  padding: 16px 0;
+  grid-template-columns: minmax(130px, 240px) 1fr;
+  gap: 24px;
+  padding: 18px 0;
   border-bottom: 1px solid var(--line);
+  align-items: baseline;
 }
 
 .journey-list dt {
   font-family: var(--font-code);
-  font-size: 9px;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .journey-list dd {
   max-width: 62ch;
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--ink-2);
+  margin: 0;
 }
 
 /* ---------- FAQ ---------- */
@@ -1727,7 +1746,7 @@ svg {
 .faq-side p {
   max-width: 30ch;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -1814,7 +1833,7 @@ svg {
 
 .faq-answer p {
   max-width: 66ch;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--muted);
 }
@@ -1875,7 +1894,7 @@ svg {
 
 .cta-band-side p {
   max-width: 42ch;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.62;
   color: rgba(255, 255, 255, 0.68);
 }
@@ -1890,7 +1909,7 @@ svg {
   gap: 7px;
   margin-top: 16px;
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
@@ -1926,15 +1945,7 @@ svg {
 }
 
 .page-hero-mark {
-  position: absolute;
-  top: 16px;
-  right: clamp(16px, 4vw, 56px);
-  font-family: var(--font-display);
-  font-size: clamp(9rem, 20vw, 18rem);
-  line-height: 0.8;
-  color: var(--ghost-ink);
-  pointer-events: none;
-  user-select: none;
+  display: none !important;
 }
 
 .page-hero .container {
@@ -1989,42 +2000,44 @@ svg {
 
 .page-hero-meta dt {
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .page-hero-meta dd {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 1.4;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 /* ---------- case filters ---------- */
 
 .case-filter {
-  padding-top: clamp(34px, 4vw, 48px);
+  padding-top: clamp(24px, 3.5vw, 40px);
 }
 
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px;
 }
 
 .filter-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 12px;
-  background: transparent;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: var(--radius);
   font-family: var(--font-code);
-  font-size: 9px;
-  letter-spacing: 0.07em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
   cursor: pointer;
@@ -2044,15 +2057,15 @@ svg {
 }
 
 .filter-count {
-  font-size: 8px;
+  font-size: 15px;
   opacity: 0.55;
 }
 
 .filter-status {
-  margin: 18px 0 22px;
+  margin: 20px 0 24px;
   font-family: var(--font-code);
-  font-size: 8.5px;
-  letter-spacing: 0.09em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
@@ -2093,7 +2106,7 @@ svg {
   align-items: center;
   gap: 8px;
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -2107,12 +2120,13 @@ svg {
 }
 
 .case-status {
-  padding: 5px 8px;
+  padding: 5px 12px;
+  background: var(--paper-tint);
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 4px;
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.07em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -2150,8 +2164,8 @@ svg {
   gap: 10px 28px;
   margin-top: 28px;
   font-family: var(--font-code);
-  font-size: 8.5px;
-  letter-spacing: 0.08em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -2197,7 +2211,7 @@ svg {
 .case-metric-label {
   max-width: 22ch;
   margin-top: 8px;
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.45;
   color: var(--muted);
 }
@@ -2226,17 +2240,18 @@ svg {
 
 .facts dt {
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .facts dd {
   margin-top: 5px;
-  font-size: 12.5px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .case-aside-note {
@@ -2246,10 +2261,9 @@ svg {
   padding-top: 16px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   line-height: 1.6;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
   color: var(--muted);
 }
 
@@ -2302,7 +2316,7 @@ svg {
   position: relative;
   padding-left: 19px;
   margin-top: 10px;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.62;
   color: var(--ink-2);
 }
@@ -2336,8 +2350,8 @@ svg {
 .case-quote-label {
   max-width: 34ch;
   margin-top: 12px;
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
+  font-style: normal;
   font-size: clamp(1.2rem, 1.8vw, 1.55rem);
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -2347,18 +2361,19 @@ svg {
 .tech-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   margin-top: 18px;
 }
 
 .tech-list li {
   margin: 0;
-  padding: 6px 9px;
-  border: 1px solid var(--line-strong);
-  border-radius: 2px;
+  padding: 6px 12px;
+  background: var(--paper-tint);
+  border: 1px solid var(--line);
+  border-radius: 4px;
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink-2);
 }
@@ -2375,7 +2390,7 @@ svg {
   padding-top: 18px;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2409,7 +2424,7 @@ svg {
 
 .case-page-link span {
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2448,7 +2463,7 @@ svg {
 
 .service-detail-index {
   font-family: var(--font-code);
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--accent);
   padding-top: 6px;
@@ -2462,8 +2477,8 @@ svg {
 }
 
 .service-detail-outcome {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
+  font-style: normal;
   font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   line-height: 1.32;
   color: var(--ink-2);
@@ -2505,9 +2520,9 @@ svg {
 }
 
 .service-side-block h2 {
-  font-family: var(--font-code);
-  font-size: 8.5px;
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2516,17 +2531,19 @@ svg {
 .use-case-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 8px;
   margin-top: 12px;
 }
 
 .use-case-list li {
-  padding: 5px 8px;
+  padding: 6px 12px;
+  background: var(--paper-tint);
   border: 1px solid var(--line);
-  border-radius: 2px;
-  font-size: 10.5px;
-  line-height: 1.35;
-  color: var(--ink-2);
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease);
 }
 
 .service-note {
@@ -2534,7 +2551,7 @@ svg {
   padding: 12px;
   background: var(--accent-soft);
   border-left: 2px solid var(--accent);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--ink-2);
 }
@@ -2546,7 +2563,7 @@ svg {
 .service-deliverable li {
   padding: 7px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 11.5px;
+  font-size: 15px;
   color: var(--ink-2);
 }
 
@@ -2592,7 +2609,7 @@ svg {
   justify-content: space-between;
   gap: 12px;
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2613,8 +2630,8 @@ svg {
 .service-index-card-outcome {
   max-width: 40ch;
   margin-top: 13px;
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
+  font-style: normal;
   font-size: clamp(1.05rem, 1.35vw, 1.22rem);
   line-height: 1.35;
   color: var(--ink-2);
@@ -2623,7 +2640,7 @@ svg {
 .service-index-card-summary {
   max-width: 46ch;
   margin-top: 13px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -2635,7 +2652,7 @@ svg {
   margin-top: auto;
   padding-top: 24px;
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -2657,48 +2674,654 @@ svg {
 /* ---------- service detail page ---------- */
 
 .service-detail-page {
-  padding-top: clamp(34px, 5vw, 54px);
-  padding-bottom: clamp(56px, 7vw, 84px);
+  padding-top: clamp(24px, 3.5vw, 40px);
+  padding-bottom: clamp(20px, 2.5vw, 32px);
 }
 
-.service-back {
-  margin-bottom: 6px;
+.service-pagination {
+  margin-top: clamp(24px, 3vw, 36px);
 }
 
-.service-back a {
+.service-pagination .case-page-link {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* 1. Header Toolbar */
+.service-detail-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 24px;
+  margin-bottom: clamp(28px, 4vw, 36px);
+  border-bottom: 1px solid var(--line);
+}
+
+.service-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-code);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: all 0.2s var(--ease);
+}
+
+.service-back-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--paper-tint);
+  transform: translateX(-2px);
+}
+
+.service-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--paper-tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-code);
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+}
+
+.service-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* 2. Proof & Verified Benchmark Strip */
+.service-proof-strip {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 2.8vw, 30px);
+  margin-bottom: clamp(36px, 5vw, 56px);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-proof-strip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.service-proof-strip-kicker {
+  font-family: var(--font-code);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.service-proof-strip-sub {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.service-proof-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.5vw, 28px);
+}
+
+.service-proof-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 12px;
+  border-right: 1px solid var(--line);
+}
+
+.service-proof-card:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.service-proof-card-val {
+  font-family: var(--font-body);
+  font-size: clamp(24px, 2.8vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+
+.service-proof-card-lbl {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* 3. Main Body Two-Column Grid */
+.service-detail-body--page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: clamp(36px, 4.5vw, 64px);
+  align-items: start;
+}
+
+.service-detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 60px);
+  min-width: 0;
+}
+
+/* Executive Lead & Overview Section */
+.service-overview-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-section-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-code);
-  font-size: 8.5px;
-  letter-spacing: 0.09em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
-  transition: color 0.2s var(--ease);
+  color: var(--accent);
+  margin-bottom: 14px;
 }
 
-.service-back a:hover {
+.service-overview-title {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 24px 0;
+}
+
+.service-lead-card {
+  padding: clamp(20px, 2.8vw, 26px);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.service-lead-card p {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--ink);
+  margin: 0;
+  font-weight: 500;
+}
+
+.service-body-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-body-paragraphs p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* Modular Architecture Section */
+.service-modules-section {
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+}
+
+.service-block-heading {
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 8px 0;
+}
+
+.service-block-sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 22px 0;
+}
+
+.service-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.service-module-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 24px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s var(--ease);
+}
+
+.service-module-card:hover {
+  border-color: var(--accent);
+  background: var(--paper-tint);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.12);
+}
+
+.service-module-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.service-module-kicker {
+  font-family: var(--font-code);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--accent);
+  font-weight: 600;
+}
+
+.service-module-arrow {
+  color: var(--muted);
+  transition: transform 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.service-module-card:hover .service-module-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.service-module-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 8px 0;
+}
+
+.service-module-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 18px 0;
+  flex-grow: 1;
+}
+
+.service-module-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-code);
+  font-size: 15px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Deliverables Section */
+.service-deliverables-section {
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+}
+
+.service-deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.service-deliverable-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: all 0.2s var(--ease);
+}
+
+.service-deliverable-card:hover {
+  border-color: var(--line-strong);
+  background: var(--paper-tint);
+}
+
+.service-deliverable-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-deliverable-card-num {
+  font-family: var(--font-code);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.service-deliverable-card-icon {
+  color: var(--accent);
+  display: inline-flex;
+}
+
+.service-deliverable-card-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Delivery Architecture Section */
+.service-deploy-section {
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+}
+
+.service-deploy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.service-deploy-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s var(--ease);
+}
+
+.service-deploy-card:hover {
+  border-color: var(--line-strong);
+}
+
+.service-deploy-badge {
+  font-family: var(--font-code);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.service-deploy-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 10px 0;
+}
+
+.service-deploy-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 18px 0;
+}
+
+.service-deploy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.service-deploy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.service-deploy-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* 4. Sticky Sidebar Intelligence Dock */
+.service-sidebar-dock {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  width: 100%;
+}
+
+.service-side-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+
+.service-side-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.service-side-panel-header h3 {
+  font-family: var(--font-code);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.service-side-panel-badge {
+  font-family: var(--font-code);
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Where It Fits / Workflow List */
+.service-fit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-fit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--paper-tint);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+  transition: all 0.2s var(--ease);
+}
+
+.service-fit-item:hover {
+  border-color: var(--line-strong);
+  background: var(--paper);
+}
+
+.service-fit-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Production Deliverables Checklist */
+.service-deliverable-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-deliverable-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.service-deliverable-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Governance & Trust Box */
+.service-trust-box {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  position: relative;
+}
+
+.service-trust-box-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.service-trust-box-head h3 {
+  font-family: var(--font-code);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.service-trust-box-icon {
+  color: var(--accent);
+  display: inline-flex;
+}
+
+.service-trust-note {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 16px 0;
+}
+
+.service-trust-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.service-trust-tag {
+  font-family: var(--font-code);
+  font-size: 15px;
+  padding: 4px 10px;
+  background: var(--paper-tint);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+}
+
+/* Mini Sidebar Action Card */
+.service-side-action-card {
+  padding: 20px 22px;
+  background: var(--paper-tint);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-side-action-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.service-side-action-desc {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 6px 0;
+}
+
+.service-side-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  font-family: var(--font-code);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s var(--ease);
+}
+
+.service-side-action-btn:hover {
+  opacity: 0.9;
 }
 
 .service-pagination {
   margin-top: clamp(40px, 5vw, 60px);
-}
-
-.service-detail-body--page {
-  grid-template-columns: minmax(0, 1fr) 300px;
-}
-
-.service-detail-body--page .service-diagram {
-  grid-column: 1 / -1;
-}
-
-.service-detail-body--page .service-detail-copy {
-  grid-column: 1;
-}
-
-.service-detail-body--page .service-detail-side {
-  grid-column: 2;
 }
 
 /* ---------- service diagrams ---------- */
@@ -2720,7 +3343,7 @@ svg {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2763,7 +3386,7 @@ svg {
   margin-top: 12px;
   padding-top: 10px;
   border-top: 1px solid var(--line);
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
 }
@@ -2787,7 +3410,7 @@ svg {
 .dg-title {
   fill: var(--ink);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -2795,20 +3418,20 @@ svg {
 .dg-sub {
   fill: var(--muted);
   font-family: var(--font-code);
-  font-size: 9.5px;
+  font-size: 15px;
 }
 
 .dg-step {
   fill: var(--muted-2);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
 }
 
 .dg-col {
   fill: var(--muted-2);
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.1em;
 }
 
@@ -2865,9 +3488,10 @@ svg {
 }
 
 .engagement-number {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(3.2rem, 5vw, 4.6rem);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
   line-height: 0.8;
   color: var(--accent);
 }
@@ -2883,7 +3507,7 @@ svg {
   display: block;
   margin-bottom: 12px;
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2892,7 +3516,7 @@ svg {
 .engagement-main > p {
   max-width: 54ch;
   margin-top: 14px;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--ink-2);
 }
@@ -2908,17 +3532,18 @@ svg {
 
 .engagement-side-block dt {
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.09em;
+  font-size: 15px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .engagement-side-block dd {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .engagement-decision {
@@ -2926,7 +3551,7 @@ svg {
   padding: 12px;
   border-left: 2px solid var(--accent);
   background: var(--accent-soft);
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--ink-2);
 }
@@ -2952,8 +3577,8 @@ svg {
   align-items: center;
   gap: 9px;
   font-family: var(--font-code);
-  font-size: 9px;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -2974,7 +3599,7 @@ svg {
 .model-card > p {
   max-width: 38ch;
   margin-top: 9px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
 }
@@ -2985,25 +3610,26 @@ svg {
 
 .model-row {
   display: grid;
-  grid-template-columns: 104px 1fr;
-  gap: 18px;
-  padding: 13px 0;
+  grid-template-columns: minmax(130px, 180px) 1fr;
+  gap: 20px;
+  padding: 14px 0;
   border-top: 1px solid var(--line);
 }
 
 .model-row dt {
   font-family: var(--font-code);
-  font-size: 7.5px;
+  font-size: 15px;
   line-height: 1.5;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .model-row dd {
-  font-size: 12.5px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 /* ---------- about ---------- */
@@ -3054,7 +3680,7 @@ svg {
 
 .about-diff-index {
   font-family: var(--font-code);
-  font-size: 9px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   color: var(--accent);
   padding-top: 4px;
@@ -3068,7 +3694,7 @@ svg {
 
 .about-diff-row p {
   max-width: 54ch;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--muted);
 }
@@ -3086,7 +3712,7 @@ svg {
   padding: 18px 18px 18px 0;
   border-right: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   line-height: 1.6;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -3157,17 +3783,18 @@ svg {
 
 .about-fact dt {
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.09em;
+  font-size: 15px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .about-fact dd {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 1.5;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 /* ---------- contact ---------- */
@@ -3201,32 +3828,33 @@ svg {
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   font-family: var(--font-code);
-  font-size: 8.5px;
-  letter-spacing: 0.09em;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .form-optional {
-  font-size: 7.5px;
+  font-size: 15px;
   color: var(--muted-2);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
 .form-field input,
 .form-field textarea,
 .form-field select {
   width: 100%;
-  padding: 11px 12px;
-  background: transparent;
+  padding: 12px 14px;
+  background: var(--paper);
   border: 1px solid var(--line-strong);
-  border-radius: 2px;
+  border-radius: var(--radius);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
   transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
     box-shadow 0.2s var(--ease);
 }
@@ -3273,21 +3901,21 @@ svg {
   right: 13px;
   transform: translateY(-50%);
   font-family: var(--font-code);
-  font-size: 11px;
+  font-size: 15px;
   color: var(--muted);
   pointer-events: none;
 }
 
 .form-hint {
   margin-top: 6px;
-  font-size: 10.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--muted-2);
 }
 
 .form-error {
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--accent);
 }
@@ -3319,7 +3947,7 @@ svg {
 }
 
 .form-consent label {
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -3347,13 +3975,11 @@ svg {
 }
 
 .form-submit p {
-  max-width: 26ch;
-  font-family: var(--font-code);
-  font-size: 8px;
+  max-width: 44ch;
+  font-family: var(--font-body);
+  font-size: 15px;
   line-height: 1.5;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--muted-2);
+  color: var(--muted);
 }
 
 .form-success {
@@ -3389,7 +4015,7 @@ svg {
 .form-success p {
   max-width: 40ch;
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -3431,7 +4057,7 @@ svg {
 
 .next-steps .step-index {
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--accent);
   padding-top: 2px;
@@ -3439,14 +4065,14 @@ svg {
 
 .next-steps strong {
   display: block;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.015em;
 }
 
 .next-steps p {
   margin-top: 3px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -3460,7 +4086,7 @@ svg {
 
 .contact-direct > p:first-child {
   font-family: var(--font-code);
-  font-size: 8.5px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--mint);
@@ -3486,7 +4112,7 @@ svg {
   width: fit-content;
   margin-top: 6px;
   font-family: var(--font-code);
-  font-size: 12.5px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   color: var(--mint);
 }
@@ -3499,14 +4125,14 @@ svg {
 .contact-direct-address {
   margin-top: 14px;
   font-style: normal;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.72);
 }
 
 .contact-direct-note {
   margin-top: 14px;
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.62);
 }
@@ -3522,12 +4148,11 @@ svg {
 .contact-trust li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
 }
 
 .contact-trust svg {
@@ -3562,7 +4187,7 @@ svg {
 .legal-aside p {
   margin-top: 10px;
   font-family: var(--font-code);
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--muted);
@@ -3585,7 +4210,7 @@ svg {
 .legal-prose p,
 .legal-prose li {
   margin-top: 12px;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.68;
   color: var(--ink-2);
 }
@@ -3623,9 +4248,10 @@ svg {
 }
 
 .not-found-code {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(5rem, 16vw, 12rem);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
   line-height: 0.8;
   color: var(--accent);
 }
@@ -3657,7 +4283,7 @@ svg {
 /* ---------- footer ---------- */
 
 .site-footer {
-  padding: clamp(52px, 7vw, 80px) 0 0;
+  padding: clamp(52px, 7vw, 80px) 0 clamp(40px, 5vw, 64px);
   border-top: 1px solid var(--ink);
   overflow: hidden;
 }
@@ -3668,10 +4294,14 @@ svg {
   gap: clamp(28px, 4vw, 54px);
 }
 
+.footer-brand .brand-logo {
+  height: clamp(58px, 6vw, 70px);
+}
+
 .footer-brand p {
   max-width: 32ch;
   margin-top: 18px;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
 }
@@ -3681,7 +4311,7 @@ svg {
   align-items: center;
   gap: 7px;
   margin-top: 18px;
-  font-size: 12.5px;
+  font-size: 15px;
   border-bottom: 1px solid var(--line-strong);
   padding-bottom: 2px;
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
@@ -3697,7 +4327,7 @@ svg {
   width: fit-content;
   margin-top: 8px;
   font-family: var(--font-code);
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 0.01em;
   color: var(--ink-2);
   transition: color 0.2s var(--ease);
@@ -3711,27 +4341,29 @@ svg {
   max-width: 30ch;
   margin-top: 12px;
   font-style: normal;
-  font-size: 11.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
 }
 
 .footer-heading {
-  margin-bottom: 14px;
-  font-family: var(--font-code);
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
 
 .footer-col li + li {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .footer-col a {
-  font-size: 12.5px;
+  display: inline-block;
+  padding: 2px 0;
+  font-size: 15px;
   line-height: 1.45;
   color: var(--ink-2);
   transition: color 0.2s var(--ease);
@@ -3743,7 +4375,7 @@ svg {
 
 .footer-col--cta p {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.55;
   color: var(--muted);
 }
@@ -3752,11 +4384,11 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 14px;
   padding-bottom: 2px;
   border-bottom: 1px solid var(--accent);
-  font-size: 12.5px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--accent);
 }
 
@@ -3772,11 +4404,11 @@ svg {
   gap: 18px;
   flex-wrap: wrap;
   margin-top: clamp(40px, 5vw, 58px);
-  padding: 16px 0;
+  padding: 18px 0;
   border-top: 1px solid var(--line);
   font-family: var(--font-code);
-  font-size: 8px;
-  letter-spacing: 0.05em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted-2);
 }
@@ -3793,9 +4425,9 @@ svg {
 
 .footer-note {
   max-width: 92ch;
-  padding-top: 13px;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted-2);
 }
@@ -3843,7 +4475,7 @@ svg {
   }
 
   .nav-link {
-    font-size: 12.5px;
+    font-size: 15px;
   }
 
   .case-grid {
@@ -3943,7 +4575,7 @@ svg {
 
   .mobile-nav-index {
     font-family: var(--font-code);
-    font-size: 8px;
+    font-size: 15px;
     letter-spacing: 0.08em;
     color: var(--muted-2);
     width: 20px;
@@ -4007,10 +4639,8 @@ svg {
   }
 
   .mobile-subnav-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
+    display: block;
+    padding: 10px 14px;
     background: var(--paper-tint);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -4022,29 +4652,15 @@ svg {
     border-color: var(--accent);
   }
 
-  .mobile-subnav-index {
-    font-family: var(--font-code);
-    font-size: 8.5px;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .mobile-subnav-text {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-  }
-
   .mobile-subnav-title {
-    font-size: 13.5px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     color: var(--ink);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
 
   .mobile-subnav-desc {
-    font-size: 11px;
+    font-size: 15px;
     line-height: 1.35;
     color: var(--muted);
     margin-top: 2px;
@@ -4060,7 +4676,7 @@ svg {
     align-items: center;
     gap: 6px;
     font-family: var(--font-code);
-    font-size: 9.5px;
+    font-size: 15px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--accent);
@@ -4082,13 +4698,13 @@ svg {
   }
 
   .mobile-email {
-    font-size: 12.5px;
+    font-size: 15px;
     border-bottom: 1px solid var(--line-strong);
   }
 
   .mobile-panel-foot p {
     font-family: var(--font-code);
-    font-size: 8px;
+    font-size: 15px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--muted-2);
@@ -4230,13 +4846,43 @@ svg {
   }
 
   .service-detail-body--page {
-    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .service-detail-body--page .service-diagram,
   .service-detail-body--page .service-detail-copy,
-  .service-detail-body--page .service-detail-side {
-    grid-column: 2;
+  .service-detail-body--page .service-detail-side,
+  .service-detail-main,
+  .service-sidebar-dock {
+    grid-column: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .service-sidebar-dock {
+    position: static;
+  }
+
+  .service-proof-strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .service-proof-card {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .service-proof-card:nth-child(1),
+  .service-proof-card:nth-child(2) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .service-deploy-grid,
+  .service-deliverables-grid {
+    grid-template-columns: 1fr;
   }
 
   .service-detail-outcome {
@@ -4346,11 +4992,11 @@ svg {
 
 @media (max-width: 720px) {
   :root {
-    --header-h: 64px;
+    --header-h: 70px;
   }
 
   .brand-logo {
-    height: 40px;
+    height: 48px;
   }
 
   .brand-word {
@@ -4519,8 +5165,24 @@ svg {
 
   .service-detail-body--page .service-diagram,
   .service-detail-body--page .service-detail-copy,
-  .service-detail-body--page .service-detail-side {
+  .service-detail-body--page .service-detail-side,
+  .service-detail-main,
+  .service-sidebar-dock {
     grid-column: 1;
+  }
+
+  .service-proof-strip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-proof-card {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+  }
+
+  .service-proof-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .service-diagram {
@@ -4543,6 +5205,11 @@ svg {
   .engagement-side {
     grid-column: 1;
     grid-template-columns: 1fr;
+  }
+
+  .journey-list > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .model-row {
@@ -4699,20 +5366,30 @@ svg {
 
 .home-hero-split {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 420px);
-  gap: clamp(36px, 5.5vw, 72px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 400px);
+  gap: clamp(32px, 4.5vw, 64px);
   align-items: start;
 }
 
 .home-hero-left {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-hero-slide-content {
   animation: heroFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
   transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.home-hero-left[data-pending="true"] {
+.home-hero-slide-content[data-pending="true"] {
   opacity: 0.5;
   transform: translateY(4px);
+}
+
+.home-hero-slider-bar {
+  display: none;
 }
 
 @keyframes heroFadeIn {
@@ -4727,43 +5404,42 @@ svg {
 }
 
 .home-hero-eyebrow-box {
-  margin-bottom: clamp(16px, 2vw, 22px);
+  margin-bottom: clamp(12px, 1.5vw, 16px);
 }
 
-.home-hero-eyebrow-text {
-  display: inline-block;
-  font-family: var(--font-code);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.home-hero-eyebrow-box .eyebrow {
+  margin-bottom: 0;
   color: var(--accent);
 }
 
 .home-hero-title {
-  font-size: clamp(2.35rem, 4.3vw, 3.85rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  font-family: var(--font-body);
+  font-size: clamp(1.85rem, 2.6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  margin: 0 0 clamp(14px, 1.8vw, 18px) 0;
-  max-width: 22ch;
+  margin: 0 0 clamp(10px, 1.2vw, 14px) 0;
+  max-width: 30ch;
+  text-wrap: balance;
 }
 
 .home-hero-selected-subtitle {
-  font-size: clamp(17px, 1.3vw, 20px);
-  font-weight: 600;
-  line-height: 1.45;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: var(--accent);
-  margin: 0 0 16px 0;
-  max-width: 50ch;
+  margin: 0 0 12px 0;
+  max-width: 52ch;
 }
 
 .home-hero-deck {
-  font-size: clamp(15px, 1.2vw, 17px);
-  line-height: 1.62;
+  font-size: 15px;
+  line-height: 1.58;
   color: var(--ink-2);
-  margin: 0 0 clamp(22px, 3vw, 28px) 0;
+  margin: 0 0 clamp(18px, 2.5vw, 24px) 0;
   max-width: 52ch;
 }
 
@@ -4781,7 +5457,7 @@ svg {
   gap: 8px;
   min-height: 44px;
   padding: 10px 20px;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -4789,7 +5465,7 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--accent);
   text-decoration: underline;
@@ -4804,18 +5480,19 @@ svg {
 }
 
 .home-hero-caption {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.55;
   color: var(--muted);
   max-width: 50ch;
-  margin: 0 0 clamp(24px, 3.5vw, 32px) 0;
+  margin: 0;
 }
 
 .home-hero-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 24px);
-  padding-top: clamp(18px, 2.5vw, 24px);
+  gap: clamp(14px, 2.5vw, 32px);
+  padding-top: clamp(20px, 2.5vw, 28px);
+  margin-top: clamp(28px, 4vw, 42px);
   border-top: 1px solid var(--line);
 }
 
@@ -4839,7 +5516,7 @@ svg {
 
 .home-hero-stat-label {
   display: block;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.35;
   color: var(--muted);
 }
@@ -4862,7 +5539,7 @@ svg {
 
 .home-hero-menu-header h2 {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: #ffffff;
@@ -4893,7 +5570,7 @@ svg {
 }
 
 .home-hero-menu-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.01em;
@@ -4961,11 +5638,64 @@ svg {
 @media (max-width: 960px) {
   .home-hero-split {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 0;
   }
 
+  /* Remove right section on mobile */
   .home-hero-menu-card {
-    max-width: 520px;
+    display: none !important;
+  }
+
+  /* Slider dots for mobile */
+  .home-hero-slider-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(20px, 3.5vw, 28px);
+    padding: 8px 0;
+  }
+
+  .home-hero-slider-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: var(--paper-tint);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .home-hero-slider-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    background: var(--line-strong, #cbd5e1);
+    cursor: pointer;
+    transition: width 0.24s var(--ease), background 0.24s var(--ease);
+    touch-action: manipulation;
+  }
+
+  /* Expand touch target for comfortable mobile tapping */
+  .home-hero-slider-dot::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -6px;
+    right: -6px;
+  }
+
+  .home-hero-slider-dot:hover {
+    background: var(--muted);
+  }
+
+  .home-hero-slider-dot--active {
+    width: 24px;
+    background: var(--accent);
   }
 }
 

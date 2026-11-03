@@ -6,8 +6,8 @@ export function Logo({ linked = true }: { linked?: boolean }) {
     <Image
       src="/icons/alpha-logo.svg?v=2"
       alt="Alpha2Omega"
-      width={72}
-      height={48}
+      width={120}
+      height={80}
       priority
       className="brand-logo"
     />

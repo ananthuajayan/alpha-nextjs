@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { ArrowRight, ArrowUpRight } from "@/components/icons";
+import { SectionLabel } from "@/components/section-label";
 
 export type HeroSolution = {
   id: string;
@@ -26,7 +27,7 @@ const solutions: HeroSolution[] = [
       "Phones, letters and paperwork, in one system your staff stay in charge of.",
     eyebrow: "The AI operating system for GP practices",
     title: "The AI operating system for GP practices",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -43,7 +44,7 @@ const solutions: HeroSolution[] = [
       "Scanned forms, invoices and delivery notes turned into checked data.",
     eyebrow: "Typing up paperwork",
     title: "Typing up paperwork",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -60,7 +61,7 @@ const solutions: HeroSolution[] = [
       "Every call picked up and summarised. Urgent ones go straight to a person.",
     eyebrow: "Answering the phones",
     title: "Answering the phones",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -77,7 +78,7 @@ const solutions: HeroSolution[] = [
       "Incoming post read, sorted and queued for your team to approve.",
     eyebrow: "Sorting letters and referrals",
     title: "Sorting letters and referrals",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -93,7 +94,7 @@ const solutions: HeroSolution[] = [
     subtitle: "Draft replies written for you. Your team checks and sends.",
     eyebrow: "Replying to customer emails",
     title: "Replying to customer emails",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -109,7 +110,7 @@ const solutions: HeroSolution[] = [
     subtitle: "Bills of quantities drawn from plans in days, not weeks.",
     eyebrow: "Pricing up building work",
     title: "Pricing up building work",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -126,7 +127,7 @@ const solutions: HeroSolution[] = [
       "Guided patient photos, with a clinician signing off. In clinical validation.",
     eyebrow: "Orthodontic referrals",
     title: "Orthodontic referrals",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -142,7 +143,7 @@ const solutions: HeroSolution[] = [
     subtitle: "Most owners aren't. We'll look at your week and tell you.",
     eyebrow: "For businesses where the owner still reads the invoices",
     title: "AI that helps your business make more profit.",
-    deck: "You didn't start your business to spend your evenings on paperwork, or to pay good people to retype things. We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters. More of every pound you earn ends up as profit.",
+    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
     caption:
       "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
     primaryCta: { label: "Book a chat", href: "/contact" },
@@ -161,93 +162,165 @@ const stats = [
 ];
 
 export function HomeHero() {
-  const [selectedIndex, setSelectedIndex] = useState(0); // Starts on item 0 (selected with active highlight)
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPending, startTransition] = useTransition();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartXRef = useRef<number | null>(null);
 
   const activeSolution = solutions[selectedIndex] ?? solutions[0];
 
-  const handleSelect = (index: number) => {
+  // Screen size check for mobile layout & auto-slider
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 960);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleSelect = useCallback(
+    (index: number) => {
+      startTransition(() => {
+        setSelectedIndex(index);
+      });
+    },
+    [startTransition]
+  );
+
+  const handlePrev = useCallback(() => {
     startTransition(() => {
-      setSelectedIndex(index);
+      setSelectedIndex((prev) => (prev - 1 + solutions.length) % solutions.length);
     });
+  }, [startTransition]);
+
+  const handleNext = useCallback(() => {
+    startTransition(() => {
+      setSelectedIndex((prev) => (prev + 1) % solutions.length);
+    });
+  }, [startTransition]);
+
+  // Auto-play slider on mobile (5.5s interval)
+  useEffect(() => {
+    if (!isMobile || isPaused) return;
+
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5500);
+
+    return () => clearInterval(timer);
+  }, [isMobile, isPaused, handleNext, selectedIndex]);
+
+  // Touch gesture support for mobile swiping
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setIsPaused(false);
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartXRef.current - touchEndX;
+
+    // Minimum swipe threshold: 40px
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+    touchStartXRef.current = null;
   };
 
   return (
     <header className="page-hero home-hero">
       <div className="page-hero-grid" aria-hidden="true" />
-      <div className="page-hero-mark" aria-hidden="true">
-        α
-      </div>
 
       <div className="container">
         <div className="home-hero-split">
-          {/* LEFT SIDE CONTENT */}
+          {/* LEFT SIDE CONTENT & MOBILE SLIDER */}
           <div
             className="home-hero-left"
-            key={activeSolution.id}
-            data-pending={isPending ? "true" : "false"}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="home-hero-eyebrow-box">
-              <span className="home-hero-eyebrow-text">
-                {activeSolution.eyebrow}
-              </span>
+            <div
+              key={activeSolution.id}
+              className="home-hero-slide-content"
+              data-pending={isPending ? "true" : "false"}
+            >
+              <div className="home-hero-eyebrow-box">
+                <SectionLabel>{activeSolution.eyebrow}</SectionLabel>
+              </div>
+
+              <h1 className="home-hero-title">
+                {activeSolution.title}
+              </h1>
+
+              {/* Subtitle from the selected item */}
+              <p className="home-hero-selected-subtitle">
+                {activeSolution.subtitle}
+              </p>
+
+              <p className="home-hero-deck">
+                {activeSolution.deck}
+              </p>
+
+              <div className="home-hero-actions">
+                <Link
+                  className="btn btn--accent btn--lg home-hero-btn"
+                  href={activeSolution.primaryCta.href}
+                >
+                  {activeSolution.primaryCta.label}
+                  <ArrowUpRight size={15} />
+                </Link>
+                <Link
+                  className="home-hero-text-link"
+                  href={activeSolution.secondaryCta.href}
+                >
+                  {activeSolution.secondaryCta.label}
+                  <ArrowRight size={15} />
+                </Link>
+              </div>
+
+              <p className="home-hero-caption">
+                {activeSolution.caption}
+              </p>
             </div>
 
-            <h1 className="home-hero-title">
-              {activeSolution.title}
-            </h1>
-
-            {/* THE REST: Description / Subtitle from the selected item */}
-            <p className="home-hero-selected-subtitle">
-              {activeSolution.subtitle}
-            </p>
-
-            <p className="home-hero-deck">
-              {activeSolution.deck}
-            </p>
-
-            <div className="home-hero-actions">
-              <Link
-                className="btn btn--accent btn--lg home-hero-btn"
-                href={activeSolution.primaryCta.href}
+            {/* MOBILE SLIDER DOTS (Only visible <= 960px) */}
+            <div
+              className="home-hero-slider-bar"
+              aria-label="Solutions carousel"
+            >
+              <div
+                className="home-hero-slider-dots"
+                role="tablist"
+                aria-label="Choose solution"
               >
-                {activeSolution.primaryCta.label}
-                <ArrowUpRight size={15} />
-              </Link>
-              <Link
-                className="home-hero-text-link"
-                href={activeSolution.secondaryCta.href}
-              >
-                {activeSolution.secondaryCta.label}
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-
-            <p className="home-hero-caption">
-              {activeSolution.caption}
-            </p>
-
-            {/* STATS FROM IMAGE */}
-            <div className="home-hero-stats" aria-label="What clients have seen">
-              {stats.map((stat, i) => {
-                const isHighlighted =
-                  activeSolution.highlightStatIndex === undefined ||
-                  activeSolution.highlightStatIndex === i;
-                return (
-                  <div
-                    key={stat.label}
-                    className="home-hero-stat-col"
-                    data-highlight={isHighlighted ? "true" : "false"}
-                  >
-                    <strong className="home-hero-stat-value">{stat.value}</strong>
-                    <span className="home-hero-stat-label">{stat.label}</span>
-                  </div>
-                );
-              })}
+                {solutions.map((item, idx) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === selectedIndex}
+                    aria-label={`Solution ${idx + 1}: ${item.menuTitle}`}
+                    className={`home-hero-slider-dot ${
+                      idx === selectedIndex ? "home-hero-slider-dot--active" : ""
+                    }`}
+                    onClick={() => handleSelect(idx)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* RIGHT SIDE MENU CARD: ONLY TITLES */}
+          {/* RIGHT SIDE MENU CARD: ONLY TITLES (Hidden on mobile via CSS) */}
           <nav
             className="home-hero-menu-card"
             aria-label="What we can take off your plate"
@@ -298,6 +371,25 @@ export function HomeHero() {
               })}
             </div>
           </nav>
+        </div>
+
+        {/* STATS - SPANS FULL WIDTH UNDERNEATH */}
+        <div className="home-hero-stats" aria-label="What clients have seen">
+          {stats.map((stat, i) => {
+            const isHighlighted =
+              activeSolution.highlightStatIndex === undefined ||
+              activeSolution.highlightStatIndex === i;
+            return (
+              <div
+                key={stat.label}
+                className="home-hero-stat-col"
+                data-highlight={isHighlighted ? "true" : "false"}
+              >
+                <strong className="home-hero-stat-value">{stat.value}</strong>
+                <span className="home-hero-stat-label">{stat.label}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </header>

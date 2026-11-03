@@ -8,9 +8,14 @@ import {
 } from "@/content/services";
 import { site } from "@/content/site";
 import { PageHero } from "@/components/page-hero";
-import { ServiceDiagram } from "@/components/service-diagram";
 import { CtaBand } from "@/components/cta-band";
-import { ArrowRight, ArrowUpRight, CheckIcon, ShieldIcon } from "@/components/icons";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  CheckIcon,
+  ShieldIcon,
+} from "@/components/icons";
 
 type Params = {
   params: Promise<{ slug: string }>;
@@ -64,6 +69,9 @@ export default async function ServicePage({ params }: Params) {
     areaServed: ["United Kingdom", "European Union"],
   };
 
+  const leadParagraph = service.body[0];
+  const supportingParagraphs = service.body.slice(1);
+
   return (
     <>
       <script
@@ -84,103 +92,173 @@ export default async function ServicePage({ params }: Params) {
       />
 
       <div className="container service-detail-page">
-        <div className="service-back">
-          <Link href="/services">← All services</Link>
+        {/* Navigation Toolbar */}
+        <div className="service-detail-header-bar">
+          <Link href="/services" className="service-back-btn">
+            <ArrowLeft size={16} />
+            <span>All Services</span>
+          </Link>
+          <div className="service-status-pill">
+            <span className="service-status-dot" />
+            <span>Service {service.index} of 04 &bull; Production Ready</span>
+          </div>
         </div>
 
+        {/* Verified Impact & Performance Benchmarks */}
         {service.metrics && service.metrics.length > 0 ? (
-          <div className="proof-block" style={{ marginBottom: "clamp(32px, 4vw, 48px)" }}>
-            <div className="proof-grid">
+          <section className="service-proof-strip" aria-label="Performance benchmarks">
+            <div className="service-proof-strip-top">
+              <span className="service-proof-strip-kicker">
+                Verified Production Benchmarks
+              </span>
+              <span className="service-proof-strip-sub">
+                Audited against customer ground-truth datasets
+              </span>
+            </div>
+            <div className="service-proof-strip-grid">
               {service.metrics.map((metric) => (
-                <div className="proof-item" key={metric.label}>
-                  <div className="proof-value">{metric.value}</div>
-                  <div className="proof-label">{metric.label}</div>
+                <div className="service-proof-card" key={metric.label}>
+                  <div className="service-proof-card-val">{metric.value}</div>
+                  <div className="service-proof-card-lbl">{metric.label}</div>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         ) : null}
 
-        <div className="service-detail-body service-detail-body--page">
-          <ServiceDiagram slug={service.slug} index={service.index} />
+        {/* Core Content Grid */}
+        <div className="service-detail-body--page">
+          <main className="service-detail-main">
+            {/* Overview & Core Solution */}
+            <section className="service-overview-section">
+              <span className="service-section-tag">
+                Core Solution & Architecture
+              </span>
+              {service.headline ? (
+                <h2 className="service-overview-title">
+                  {service.headline}
+                </h2>
+              ) : null}
 
-          <div className="service-detail-copy">
-            {service.headline ? (
-              <h2 style={{ fontSize: "clamp(22px, 2.5vw, 28px)", lineHeight: 1.25, marginBottom: "20px" }}>
-                {service.headline}
-              </h2>
-            ) : null}
-            {service.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+              {leadParagraph ? (
+                <div className="service-lead-card">
+                  <p>{leadParagraph}</p>
+                </div>
+              ) : null}
 
+              {supportingParagraphs.length > 0 ? (
+                <div className="service-body-paragraphs">
+                  {supportingParagraphs.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+
+            {/* Specialized Modules */}
             {service.innerPages && service.innerPages.length > 0 ? (
-              <div style={{ marginTop: "40px", paddingTop: "32px", borderTop: "1px solid var(--line)" }}>
-                <span className="section-label" style={{ marginBottom: "12px", display: "inline-block" }}>
-                  Inner platforms & modules
+              <section className="service-modules-section">
+                <span className="service-section-tag">
+                  Specialised Modules
                 </span>
-                <h3 style={{ fontSize: "20px", marginBottom: "16px" }}>
-                  Specialised modules available under this service
+                <h3 className="service-block-heading">
+                  Inner platforms available under this service
                 </h3>
-                <div style={{ display: "grid", gap: "16px" }}>
+                <p className="service-block-sub">
+                  Modular tools designed to operate standalone or plugged directly into your existing infrastructure.
+                </p>
+                <div className="service-modules-grid">
                   {service.innerPages.map((inner) => (
                     <Link
                       key={inner.slug}
                       href={inner.href}
-                      style={{
-                        display: "block",
-                        padding: "20px 22px",
-                        background: "var(--paper-raised)",
-                        border: "1px solid var(--line)",
-                        borderRadius: "var(--radius)",
-                        textDecoration: "none",
-                        color: "inherit",
-                        transition: "border-color 0.2s, transform 0.2s",
-                      }}
+                      className="service-module-card"
                     >
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-                        <span style={{ fontFamily: "var(--font-code)", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--accent)" }}>
-                          {inner.kicker}
-                        </span>
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "var(--accent)", fontWeight: 500 }}>
-                          Explore module <ArrowRight size={13} />
-                        </span>
+                      <div>
+                        <div className="service-module-card-top">
+                          <span className="service-module-kicker">
+                            {inner.kicker}
+                          </span>
+                          <span className="service-module-arrow">
+                            <ArrowUpRight size={18} />
+                          </span>
+                        </div>
+                        <h4 className="service-module-title">
+                          {inner.title}
+                        </h4>
+                        <p className="service-module-desc">
+                          {inner.description}
+                        </p>
                       </div>
-                      <h4 style={{ fontSize: "17px", fontWeight: 600, color: "var(--ink)", margin: "0 0 6px 0" }}>
-                        {inner.title}
-                      </h4>
-                      <p style={{ fontSize: "13px", lineHeight: 1.5, color: "var(--muted)", margin: 0 }}>
-                        {inner.description}
-                      </p>
+                      <div className="service-module-foot">
+                        <span>Explore platform capabilities</span>
+                        <ArrowRight size={16} />
+                      </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
 
-            {service.deliveryModels && service.deliveryModels.length > 0 ? (
-              <div style={{ marginTop: "40px", paddingTop: "32px", borderTop: "1px solid var(--line)" }}>
-                <span className="section-label" style={{ marginBottom: "12px", display: "inline-block" }}>
-                  How it deploys
+            {/* Production Deliverables */}
+            {service.deliverable && service.deliverable.length > 0 ? (
+              <section className="service-deliverables-section">
+                <span className="service-section-tag">
+                  Production Deliverables
                 </span>
-                <h3 style={{ fontSize: "20px", marginBottom: "20px" }}>
-                  Delivery shapes & operational models
+                <h3 className="service-block-heading">
+                  What we deliver & deploy
                 </h3>
-                <div className="model-grid" style={{ marginTop: 0 }}>
+                <p className="service-block-sub">
+                  Everything included in this solution from initial validation through to live operational rollout.
+                </p>
+                <div className="service-deliverables-grid">
+                  {service.deliverable.map((item, idx) => (
+                    <div key={item} className="service-deliverable-card">
+                      <div className="service-deliverable-card-top">
+                        <span className="service-deliverable-card-num">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span className="service-deliverable-card-icon">
+                          <CheckIcon size={16} />
+                        </span>
+                      </div>
+                      <p className="service-deliverable-card-text">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {/* Delivery Shapes & Models */}
+            {service.deliveryModels && service.deliveryModels.length > 0 ? (
+              <section className="service-deploy-section">
+                <span className="service-section-tag">
+                  Operational Architecture
+                </span>
+                <h3 className="service-block-heading">
+                  Delivery shapes & deployment models
+                </h3>
+                <p className="service-block-sub">
+                  Flexible deployment patterns tailored to your security requirements, hosting preferences, and governance.
+                </p>
+                <div className="service-deploy-grid">
                   {service.deliveryModels.map((model) => (
-                    <article className="model-card" key={model.title}>
-                      <p className="model-card-label">{model.subtitle}</p>
-                      <h4 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "10px" }}>
+                    <article className="service-deploy-card" key={model.title}>
+                      <span className="service-deploy-badge">
+                        {model.subtitle}
+                      </span>
+                      <h4 className="service-deploy-title">
                         {model.title}
                       </h4>
-                      <p style={{ fontSize: "13px", lineHeight: 1.5, marginBottom: "16px" }}>
+                      <p className="service-deploy-desc">
                         {model.description}
                       </p>
-                      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <ul className="service-deploy-list">
                         {model.points.map((point) => (
-                          <li key={point} style={{ display: "flex", gap: "10px", alignItems: "flex-start", fontSize: "12.5px", color: "var(--ink-2)" }}>
-                            <span style={{ color: "var(--accent)", marginTop: "2px", flexShrink: 0, display: "inline-flex" }}>
-                              <CheckIcon size={14} />
+                          <li key={point} className="service-deploy-item">
+                            <span className="service-deploy-icon">
+                              <CheckIcon size={16} />
                             </span>
                             <span>{point}</span>
                           </li>
@@ -189,49 +267,66 @@ export default async function ServicePage({ params }: Params) {
                     </article>
                   ))}
                 </div>
-              </div>
+              </section>
             ) : null}
-          </div>
+          </main>
 
-          <aside className="service-detail-side">
-            <div className="service-side-block">
-              <h2>Where it fits</h2>
-              <ul className="use-case-list">
+          {/* Sticky Sidebar Intelligence Dock */}
+          <aside className="service-sidebar-dock">
+            {/* Where It Fits */}
+            <div className="service-side-panel">
+              <div className="service-side-panel-header">
+                <h3>Where It Fits</h3>
+                <span className="service-side-panel-badge">{service.useCases.length} Workflows</span>
+              </div>
+              <ul className="service-fit-list">
                 {service.useCases.map((useCase) => (
-                  <li key={useCase}>{useCase}</li>
+                  <li key={useCase} className="service-fit-item">
+                    <span className="service-fit-bullet" />
+                    <span>{useCase}</span>
+                  </li>
                 ))}
               </ul>
             </div>
 
-            {service.deliverable ? (
-              <div className="service-side-block">
-                <h2>What you get</h2>
-                <ul className="service-deliverable">
-                  {service.deliverable.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+
+            {/* Governance & Trust */}
+            {service.trustNote ? (
+              <div className="service-trust-box">
+                <div className="service-trust-box-head">
+                  <span className="service-trust-box-icon">
+                    <ShieldIcon size={18} />
+                  </span>
+                  <h3>Governance & Trust</h3>
+                </div>
+                <p className="service-trust-note">
+                  {service.trustNote}
+                </p>
+                <div className="service-trust-tags">
+                  <span className="service-trust-tag">UK & EU Resident</span>
+                  <span className="service-trust-tag">Zero Model Training</span>
+                  <span className="service-trust-tag">Audit Logs</span>
+                </div>
               </div>
             ) : null}
 
-            {service.trustNote ? (
-              <div className="service-side-block" style={{ background: "var(--paper-tint)", border: "1px solid var(--line)", padding: "16px", borderRadius: "var(--radius)" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                  <span style={{ color: "var(--accent)", display: "inline-flex" }}>
-                    <ShieldIcon size={14} />
-                  </span>
-                  <span style={{ fontFamily: "var(--font-code)", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>
-                    Governance & Trust
-                  </span>
-                </div>
-                <p className="service-note" style={{ margin: 0, border: "none", padding: 0 }}>
-                  {service.trustNote}
-                </p>
-              </div>
-            ) : null}
+            {/* Direct Consultation / Audit Card */}
+            <div className="service-side-action-card">
+              <h4 className="service-side-action-title">
+                Ready to evaluate on your data?
+              </h4>
+              <p className="service-side-action-desc">
+                We test accuracy against your own ground-truth data before any rollout.
+              </p>
+              <Link href="/contact" className="service-side-action-btn">
+                <span>Book an AI Audit</span>
+                <ArrowRight size={16} />
+              </Link>
+            </div>
           </aside>
         </div>
 
+        {/* Previous / Next Service Pagination */}
         <nav
           className="case-pagination service-pagination"
           aria-label="Services navigation"

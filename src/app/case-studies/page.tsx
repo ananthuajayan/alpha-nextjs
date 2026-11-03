@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function CaseStudiesPage() {
   return (
     <>
-      <PageHero
+      {/* <PageHero
         eyebrow="Case studies"
         index="03"
         title={
@@ -32,9 +32,13 @@ export default function CaseStudiesPage() {
           { label: "Evidence", value: "Measured on client data" },
           { label: "Status", value: "Five in production, one live POC" },
         ]}
-      />
+      /> */}
 
-      <section className="section" aria-labelledby="index-heading">
+      <section
+        className="section"
+        style={{ paddingTop: 0 }}
+        aria-labelledby="index-heading"
+      >
         <div className="container" style={{ paddingBottom: "0" }}>
           <h2 id="index-heading" className="sr-only">
             Case study index
