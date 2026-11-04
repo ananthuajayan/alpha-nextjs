@@ -33,49 +33,49 @@ export default function ServicesPage() {
         ]}
       />
 
-      <section className="section" aria-labelledby="service-index-heading">
+      <section className="relative py-16 md:py-24" aria-labelledby="service-index-heading">
         <div className="container">
-          <div className="section-head">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-end mb-10 lg:mb-14">
             <div>
               <SectionLabel>Service index</SectionLabel>
-              <h2 id="service-index-heading">
+              <h2 id="service-index-heading" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
                 Start with the problem, <em>not the technology.</em>
               </h2>
             </div>
-            <div className="section-head-side">
-              <p>
+            <div className="max-w-[46ch] pb-1 space-y-4">
+              <p className="text-[15px] leading-[1.6] text-ink-2">
                 Each service is a production system, not a pilot. Choose the
                 closest fit below, or start with the audit and let the evidence
                 decide.
               </p>
-              <Link className="text-link" href="/how-we-work">
+              <Link className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong font-medium text-[15px] text-ink hover:text-accent hover:border-accent transition group" href="/how-we-work">
                 How we deliver
-                <ArrowRight size={15} />
+                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
-          <div className="service-index-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-ink divide-y md:divide-y-0 divide-line">
             {services.map((service) => (
               <Link
-                className="service-index-card"
+                className="group flex flex-col p-6 sm:p-7.5 border-b border-line hover:bg-paper-tint transition md:odd:border-r"
                 href={`/services/${service.slug}`}
                 id={service.slug}
                 key={service.slug}
                 data-reveal
               >
-                <span className="service-index-card-top">
-                  <span className="service-index-card-index">
+                <span className="flex items-center justify-between gap-3 font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-muted">
+                  <span className="text-accent font-semibold">
                     {service.index}
                   </span>
                   <span>Service</span>
                 </span>
-                <h3>{service.title}</h3>
-                <p className="service-index-card-outcome">{service.outcome}</p>
-                <p className="service-index-card-summary">{service.summary}</p>
-                <span className="service-index-card-link">
+                <h3 className="max-w-[22ch] mt-6 text-xl sm:text-2xl font-semibold leading-tight tracking-[-0.035em] text-ink group-hover:text-accent transition">{service.title}</h3>
+                <p className="max-w-[40ch] mt-3 text-base sm:text-lg leading-snug text-ink-2">{service.outcome}</p>
+                <p className="max-w-[46ch] mt-3 text-[15px] leading-[1.6] text-muted">{service.summary}</p>
+                <span className="inline-flex items-center gap-2 mt-auto pt-6 font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-ink-2 group-hover:text-accent transition">
                   Explore service
-                  <ArrowUpRight size={15} />
+                  <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
               </Link>
             ))}
@@ -83,68 +83,68 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section section--tint" aria-labelledby="model-heading">
+      <section className="relative py-16 md:py-24 bg-paper-tint" aria-labelledby="model-heading">
         <div className="container">
-          <div className="section-head">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-end mb-10 lg:mb-14">
             <div>
               <SectionLabel>Two delivery models</SectionLabel>
-              <h2 id="model-heading">
+              <h2 id="model-heading" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
                 The right shape depends on <em>the work.</em>
               </h2>
             </div>
-            <div className="section-head-side">
-              <p>
+            <div className="max-w-[46ch] pb-1 space-y-4">
+              <p className="text-[15px] leading-[1.6] text-ink-2">
                 Most clients start with a proven pipeline configured to their
                 documents. Larger groups with complex integrations usually need
                 a bespoke build.
               </p>
-              <Link className="text-link" href="/how-we-work#models">
+              <Link className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong font-medium text-[15px] text-ink hover:text-accent hover:border-accent transition group" href="/how-we-work#models">
                 Compare delivery models
-                <ArrowRight size={15} />
+                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
-          <div className="model-grid">
-            <article className="model-card">
-              <p className="model-card-label">Rapid Deploy</p>
-              <h2>Proven platforms, configured to you.</h2>
-              <p>
+          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-ink divide-y md:divide-y-0 md:divide-x divide-line">
+            <article className="py-6.5 md:py-6.5 md:px-8 first:pl-0 last:pr-0">
+              <p className="flex items-center gap-2 font-mono text-xs sm:text-[13px] tracking-[0.05em] uppercase text-accent before:content-[''] before:w-1.5 before:h-1.5 before:bg-accent">Rapid Deploy</p>
+              <h2 className="mt-3.5 text-xl sm:text-2xl font-semibold tracking-[-0.035em] text-ink">Proven platforms, configured to you.</h2>
+              <p className="max-w-[38ch] mt-2 text-[15px] leading-[1.55] text-muted">
                 Our existing platforms configured to your documents and
                 workflows. Built for getting to production in weeks.
               </p>
-              <dl className="model-rows">
-                <div className="model-row">
-                  <dt>Commercial model</dt>
-                  <dd>Per-page or per-call pricing with a monthly minimum</dd>
+              <dl className="mt-6 divide-y divide-line">
+                <div className="grid grid-cols-[130px_1fr] sm:grid-cols-[160px_1fr] gap-5 py-3.5 border-t border-line">
+                  <dt className="font-mono text-xs sm:text-[13px] leading-[1.5] tracking-[0.05em] uppercase text-muted-2">Commercial model</dt>
+                  <dd className="text-[15px] font-medium leading-[1.5] text-ink">Per-page or per-call pricing with a monthly minimum</dd>
                 </div>
-                <div className="model-row">
-                  <dt>Examples</dt>
-                  <dd>
+                <div className="grid grid-cols-[130px_1fr] sm:grid-cols-[160px_1fr] gap-5 py-3.5 border-t border-line">
+                  <dt className="font-mono text-xs sm:text-[13px] leading-[1.5] tracking-[0.05em] uppercase text-muted-2">Examples</dt>
+                  <dd className="text-[15px] font-medium leading-[1.5] text-ink">
                     Extraction as a service, voice reception, ticket deflection
                   </dd>
                 </div>
               </dl>
             </article>
 
-            <article className="model-card">
-              <p className="model-card-label">Custom Build</p>
-              <h2>Bespoke systems, built around your operation.</h2>
-              <p>
+            <article className="py-6.5 md:py-6.5 md:px-8 first:pl-0 last:pr-0">
+              <p className="flex items-center gap-2 font-mono text-xs sm:text-[13px] tracking-[0.05em] uppercase text-accent before:content-[''] before:w-1.5 before:h-1.5 before:bg-accent">Custom Build</p>
+              <h2 className="mt-3.5 text-xl sm:text-2xl font-semibold tracking-[-0.035em] text-ink">Bespoke systems, built around your operation.</h2>
+              <p className="max-w-[38ch] mt-2 text-[15px] leading-[1.55] text-muted">
                 Bespoke systems designed around your workflow, systems of record
                 and approval process.
               </p>
-              <dl className="model-rows">
-                <div className="model-row">
-                  <dt>Commercial model</dt>
-                  <dd>
+              <dl className="mt-6 divide-y divide-line">
+                <div className="grid grid-cols-[130px_1fr] sm:grid-cols-[160px_1fr] gap-5 py-3.5 border-t border-line">
+                  <dt className="font-mono text-xs sm:text-[13px] leading-[1.5] tracking-[0.05em] uppercase text-muted-2">Commercial model</dt>
+                  <dd className="text-[15px] font-medium leading-[1.5] text-ink">
                     Fixed-scope build plus support. Indicative £20k–£60k for
                     extraction systems.
                   </dd>
                 </div>
-                <div className="model-row">
-                  <dt>Examples</dt>
-                  <dd>
+                <div className="grid grid-cols-[130px_1fr] sm:grid-cols-[160px_1fr] gap-5 py-3.5 border-t border-line">
+                  <dt className="font-mono text-xs sm:text-[13px] leading-[1.5] tracking-[0.05em] uppercase text-muted-2">Examples</dt>
+                  <dd className="text-[15px] font-medium leading-[1.5] text-ink">
                     Triage platforms, portals, multi-system integrations,
                     offline field apps
                   </dd>
@@ -153,25 +153,25 @@ export default function ServicesPage() {
             </article>
           </div>
 
-          <dl className="journey-list">
-            <div>
-              <dt>Start</dt>
-              <dd>
+          <dl className="mt-9 border-t border-line-strong divide-y divide-line">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(130px,240px)_1fr] gap-6 py-4.5 items-baseline">
+              <dt className="font-mono text-xs sm:text-[13px] font-medium tracking-[0.05em] uppercase text-accent">Start</dt>
+              <dd className="max-w-[62ch] text-[15px] leading-[1.6] text-ink-2 m-0">
                 Every route begins with a fixed-fee AI Audit. You leave with a
                 prioritised catalogue and ROI estimates, whether you build with
                 us or not.
               </dd>
             </div>
-            <div>
-              <dt>Prove</dt>
-              <dd>
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(130px,240px)_1fr] gap-6 py-4.5 items-baseline">
+              <dt className="font-mono text-xs sm:text-[13px] font-medium tracking-[0.05em] uppercase text-accent">Prove</dt>
+              <dd className="max-w-[62ch] text-[15px] leading-[1.6] text-ink-2 m-0">
                 We build the highest-value item on your own data and report
                 measured accuracy against ground truth.
               </dd>
             </div>
-            <div>
-              <dt>Run</dt>
-              <dd>
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(130px,240px)_1fr] gap-6 py-4.5 items-baseline">
+              <dt className="font-mono text-xs sm:text-[13px] font-medium tracking-[0.05em] uppercase text-accent">Run</dt>
+              <dd className="max-w-[62ch] text-[15px] leading-[1.6] text-ink-2 m-0">
                 We deploy, integrate and run the service — monitoring, human
                 review, accuracy reporting and continuous improvement.
               </dd>
@@ -180,29 +180,29 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="service-cta">
+      <section className="relative py-16 md:py-24" aria-labelledby="service-cta">
         <div className="container">
-          <div className="about-lede">
-            <h2 id="service-cta">
+          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-14 lg:gap-24 items-start">
+            <h2 id="service-cta" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-none tracking-[-0.045em] text-ink">
               Not sure which service fits <em>the problem?</em>
             </h2>
-            <div className="about-lede-body">
+            <div className="max-w-[48ch] space-y-4 text-base leading-[1.68] text-ink-2">
               <p>
                 That is what the audit is for. Tell us what is slow, repetitive
                 or expensive. We will map it, test it on a sample of your real
                 data, and tell you plainly where AI will help — and where it
                 will not.
               </p>
-              <Link className="text-link" href="/contact">
+              <Link className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong font-medium text-[15px] text-ink hover:text-accent hover:border-accent transition group" href="/contact">
                 Book an AI Audit
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
           </div>
 
-          <div className="trust-band" style={{ marginTop: "44px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 border-t border-line-strong border-b border-line mt-11 divide-y sm:divide-y-0 sm:divide-x divide-line">
             {site.trust.map((item) => (
-              <div className="trust-item" key={item}>
+              <div className="flex items-center gap-2.5 p-4.5 font-mono text-xs sm:text-[13px] leading-[1.6] tracking-[0.06em] uppercase text-ink-2 [&>svg]:text-accent [&>svg]:shrink-0" key={item}>
                 <CheckIcon size={14} />
                 {item}
               </div>

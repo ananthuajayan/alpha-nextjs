@@ -2,7 +2,7 @@ export const site = {
   name: "Alpha2Omega",
   legalName: "Alpha2Omega.ai",
   domain: "https://alpha2omega.ai",
-  email: "bijesh.babu@alpha2omega.ai",
+  email: "info@alpha2omega.ai",
   phone: "+44 7718 998946",
   phoneHref: "+447718998946",
   address: {

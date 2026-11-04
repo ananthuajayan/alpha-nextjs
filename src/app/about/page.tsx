@@ -49,13 +49,13 @@ export default function AboutPage() {
         ]}
       />
 
-      <section className="section" aria-labelledby="about-intro">
+      <section className="relative py-16 md:py-24" aria-labelledby="about-intro">
         <div className="container">
-          <div className="about-lede">
-            <h2 id="about-intro">
+          <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-14 lg:gap-24 items-start">
+            <h2 id="about-intro" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-none tracking-[-0.045em] text-ink">
               A senior team, <em>not a pyramid.</em>
             </h2>
-            <div className="about-lede-body">
+            <div className="max-w-[48ch] space-y-4 text-base leading-[1.68] text-ink-2">
               <p>
                 We work with NHS organisations, financial services firms,
                 document management bureaux, construction and logistics
@@ -69,31 +69,31 @@ export default function AboutPage() {
                 to run the systems we deploy. Alpha to Omega — from the first
                 audit to live operation.
               </p>
-              <Link className="text-link" href="/how-we-work">
+              <Link className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong font-medium text-[15px] text-ink hover:text-accent hover:border-accent transition group" href="/how-we-work">
                 See how an engagement runs
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
           </div>
 
-          <dl className="about-facts">
-            <div className="about-fact">
-              <dt>Team shape</dt>
-              <dd>
+          <dl className="grid grid-cols-1 md:grid-cols-3 mt-8 border-t border-line divide-y md:divide-y-0 md:divide-x divide-line">
+            <div className="py-4 md:py-4 md:px-4 first:pl-0 last:pr-0">
+              <dt className="font-mono text-xs sm:text-[13px] tracking-[0.05em] uppercase text-muted-2">Team shape</dt>
+              <dd className="mt-1.5 text-[15px] font-medium leading-[1.5] text-ink">
                 AI, infrastructure and integration engineers, led by a director
                 with a data science and AI leadership background
               </dd>
             </div>
-            <div className="about-fact">
-              <dt>Track record</dt>
-              <dd>
+            <div className="py-4 md:py-4 md:px-4 first:pl-0 last:pr-0">
+              <dt className="font-mono text-xs sm:text-[13px] tracking-[0.05em] uppercase text-muted-2">Track record</dt>
+              <dd className="mt-1.5 text-[15px] font-medium leading-[1.5] text-ink">
                 AI leadership across maritime safety, telecoms procurement and
                 financial services
               </dd>
             </div>
-            <div className="about-fact">
-              <dt>Delivery stance</dt>
-              <dd>
+            <div className="py-4 md:py-4 md:px-4 first:pl-0 last:pr-0">
+              <dt className="font-mono text-xs sm:text-[13px] tracking-[0.05em] uppercase text-muted-2">Delivery stance</dt>
+              <dd className="mt-1.5 text-[15px] font-medium leading-[1.5] text-ink">
                 Build on real client data, measure accuracy, then run what we
                 build
               </dd>
@@ -102,17 +102,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--tint" aria-labelledby="difference-heading">
+      <section className="relative py-16 md:py-24 bg-paper-tint" aria-labelledby="difference-heading">
         <div className="container">
-          <div className="section-head">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-end mb-10 lg:mb-14">
             <div>
               <SectionLabel>How we are different</SectionLabel>
-              <h2 id="difference-heading">
+              <h2 id="difference-heading" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
                 Three things that change <em>the work.</em>
               </h2>
             </div>
-            <div className="section-head-side">
-              <p>
+            <div className="max-w-[46ch] pb-1">
+              <p className="text-[15px] leading-[1.6] text-ink-2">
                 We are not trying to be the biggest consultancy in the room. We
                 are trying to be the one that is still there when the system is
                 live and the volumes have doubled.
@@ -120,28 +120,28 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="about-diff">
+          <div className="border-t border-ink divide-y divide-line">
             {differences.map((item) => (
-              <article className="about-diff-row" key={item.index}>
-                <span className="about-diff-index">{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+              <article className="grid grid-cols-1 md:grid-cols-[56px_0.8fr_1.2fr] gap-4 md:gap-8 lg:gap-14 py-6.5" key={item.index}>
+                <span className="font-mono text-[15px] tracking-[0.1em] text-accent pt-1">{item.index}</span>
+                <h3 className="text-lg sm:text-xl font-semibold leading-[1.16] tracking-[-0.03em] text-ink">{item.title}</h3>
+                <p className="max-w-[54ch] text-[15px] leading-[1.65] text-muted">{item.body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" aria-labelledby="team-heading">
+      <section className="relative py-16 md:py-24" aria-labelledby="team-heading">
         <div className="container">
-          <div className="about-team">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 lg:gap-24 items-start">
             <div>
               <SectionLabel>Who is behind it</SectionLabel>
-              <h2 id="team-heading">
+              <h2 id="team-heading" className="max-w-[14ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-none tracking-[-0.045em] text-ink">
                 Founded by an engineer. <em>Run by engineers.</em>
               </h2>
             </div>
-            <div className="about-team-body">
+            <div className="max-w-[48ch] space-y-3.5 text-[15px] leading-[1.68] text-ink-2">
               <p>
                 Alpha2Omega is founded and led by a director with a background
                 in data science and AI leadership across maritime safety,
@@ -161,36 +161,36 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="residency residency--boxed" style={{ marginTop: "56px" }}>
-            <div className="residency-grid">
-              <div className="residency-copy">
+          <div className="relative p-6 sm:p-10 lg:p-12 mt-14 bg-forest text-paper rounded-brand overflow-hidden">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_0.94fr] gap-10 lg:gap-20 items-start">
+              <div>
                 <SectionLabel>Where we stand</SectionLabel>
-                <h2>
+                <h2 className="max-w-[14ch] mt-5 text-2xl sm:text-3xl lg:text-4xl font-semibold leading-none tracking-[-0.045em] text-white [&>em]:text-mint">
                   UK data residency is a <em>design decision.</em>
                 </h2>
-                <p>
+                <p className="max-w-[47ch] mt-5 text-[15px] leading-[1.65] text-white/70">
                   Not a footnote. Our default deployment is UK-resident cloud
                   infrastructure in the London region, with Dublin for Irish
                   clients. Where data cannot leave your estate, we deploy
                   self-hosted models instead.
                 </p>
               </div>
-              <dl className="residency-list">
-                <div>
-                  <dt>UK</dt>
-                  <dd>London region cloud infrastructure for UK clients</dd>
+              <dl className="border-t border-white/25 divide-y divide-white/15">
+                <div className="grid grid-cols-[80px_1fr] sm:grid-cols-[92px_1fr] gap-5 py-4">
+                  <dt className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-mint">UK</dt>
+                  <dd className="text-[15px] leading-[1.5] text-white/80">London region cloud infrastructure for UK clients</dd>
                 </div>
-                <div>
-                  <dt>EU</dt>
-                  <dd>Dublin deployments for Irish and EU clients</dd>
+                <div className="grid grid-cols-[80px_1fr] sm:grid-cols-[92px_1fr] gap-5 py-4">
+                  <dt className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-mint">EU</dt>
+                  <dd className="text-[15px] leading-[1.5] text-white/80">Dublin deployments for Irish and EU clients</dd>
                 </div>
-                <div>
-                  <dt>NHS</dt>
-                  <dd>Security questionnaires completed as part of delivery</dd>
+                <div className="grid grid-cols-[80px_1fr] sm:grid-cols-[92px_1fr] gap-5 py-4">
+                  <dt className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-mint">NHS</dt>
+                  <dd className="text-[15px] leading-[1.5] text-white/80">Security questionnaires completed as part of delivery</dd>
                 </div>
-                <div>
-                  <dt>Estate</dt>
-                  <dd>Self-hosted models where data cannot leave</dd>
+                <div className="grid grid-cols-[80px_1fr] sm:grid-cols-[92px_1fr] gap-5 py-4">
+                  <dt className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-mint">Estate</dt>
+                  <dd className="text-[15px] leading-[1.5] text-white/80">Self-hosted models where data cannot leave</dd>
                 </div>
               </dl>
             </div>
@@ -198,24 +198,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--line" aria-labelledby="about-close">
+      <section className="relative py-16 md:py-24 border-t border-line" aria-labelledby="about-close">
         <div className="container">
-          <div className="section-head">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-end">
             <div>
               <SectionLabel>The short version</SectionLabel>
-              <h2 id="about-close">
+              <h2 id="about-close" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
                 Serious systems. <em>Plain English.</em>
               </h2>
             </div>
-            <div className="section-head-side">
-              <p>
+            <div className="max-w-[46ch] pb-1 space-y-4">
+              <p className="text-[15px] leading-[1.6] text-ink-2">
                 If you want a partner who will tell you where AI will help, show
                 you the numbers on your own data, and stay to run the thing —
                 start with an audit.
               </p>
-              <Link className="text-link" href="/contact">
+              <Link className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong font-medium text-[15px] text-ink hover:text-accent hover:border-accent transition group" href="/contact">
                 Talk to a senior member of the team
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>
           </div>

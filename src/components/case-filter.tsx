@@ -48,7 +48,7 @@ export function CaseFilter() {
       <div className="case-grid case-grid--index">
         {filtered.map((study, index) => (
           <div
-            className="case-filter-item"
+            className="case-filter-item h-full flex flex-col"
             key={study.slug}
             style={{ animationDelay: `${index * 45}ms` }}
           >
@@ -56,6 +56,7 @@ export function CaseFilter() {
               study={study}
               index={caseStudies.indexOf(study)}
               featured={active === "all" && study.order === 1}
+              className="h-full"
             />
           </div>
         ))}

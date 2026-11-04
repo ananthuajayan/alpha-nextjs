@@ -19,9 +19,9 @@ export function SiteFooter() {
               <MailIcon />
               {site.email}
             </a>
-            <a className="footer-phone" href={`tel:${site.phoneHref}`}>
+            {/* <a className="footer-phone" href={`tel:${site.phoneHref}`}>
               {site.phone}
-            </a>
+            </a> */}
             <address className="footer-address">
               {site.address.line1}, {site.address.line2}
               <br />

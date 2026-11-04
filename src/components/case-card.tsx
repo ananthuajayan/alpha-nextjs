@@ -6,14 +6,16 @@ export function CaseCard({
   study,
   index,
   featured = false,
+  className = "",
 }: {
   study: CaseStudy;
   index: number;
   featured?: boolean;
+  className?: string;
 }) {
   return (
     <Link
-      className="case-card"
+      className={`case-card h-full flex flex-col w-full ${className}`}
       data-featured={featured ? "true" : "false"}
       href={`/case-studies/${study.slug}`}
     >

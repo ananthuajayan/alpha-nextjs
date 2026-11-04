@@ -91,35 +91,35 @@ export default async function ServicePage({ params }: Params) {
         ]}
       />
 
-      <div className="container service-detail-page">
+      <div className="container py-8 sm:py-12">
         {/* Navigation Toolbar */}
-        <div className="service-detail-header-bar">
-          <Link href="/services" className="service-back-btn">
+        <div className="flex items-center justify-between gap-4 py-5 mb-8 border-b border-line">
+          <Link href="/services" className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-accent transition">
             <ArrowLeft size={16} />
             <span>All Services</span>
           </Link>
-          <div className="service-status-pill">
-            <span className="service-status-dot" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-paper-tint border border-line rounded-full text-xs font-mono tracking-wide text-ink-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Service {service.index} of 04 &bull; Production Ready</span>
           </div>
         </div>
 
         {/* Verified Impact & Performance Benchmarks */}
         {service.metrics && service.metrics.length > 0 ? (
-          <section className="service-proof-strip" aria-label="Performance benchmarks">
-            <div className="service-proof-strip-top">
-              <span className="service-proof-strip-kicker">
+          <section className="p-6 sm:p-8 mb-12 bg-paper-tint border border-line rounded-brand" aria-label="Performance benchmarks">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-line">
+              <span className="font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-semibold">
                 Verified Production Benchmarks
               </span>
-              <span className="service-proof-strip-sub">
+              <span className="text-xs sm:text-sm text-muted">
                 Audited against customer ground-truth datasets
               </span>
             </div>
-            <div className="service-proof-strip-grid">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {service.metrics.map((metric) => (
-                <div className="service-proof-card" key={metric.label}>
-                  <div className="service-proof-card-val">{metric.value}</div>
-                  <div className="service-proof-card-lbl">{metric.label}</div>
+                <div className="p-4 bg-paper border border-line rounded-brand shadow-sm" key={metric.label}>
+                  <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">{metric.value}</div>
+                  <div className="mt-1 text-xs sm:text-sm text-muted leading-snug">{metric.label}</div>
                 </div>
               ))}
             </div>
@@ -127,27 +127,27 @@ export default async function ServicePage({ params }: Params) {
         ) : null}
 
         {/* Core Content Grid */}
-        <div className="service-detail-body--page">
-          <main className="service-detail-main">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-10 lg:gap-14 items-start">
+          <main className="space-y-12 sm:space-y-16">
             {/* Overview & Core Solution */}
-            <section className="service-overview-section">
-              <span className="service-section-tag">
+            <section>
+              <span className="inline-block mb-3 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-medium">
                 Core Solution & Architecture
               </span>
               {service.headline ? (
-                <h2 className="service-overview-title">
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-4">
                   {service.headline}
                 </h2>
               ) : null}
 
               {leadParagraph ? (
-                <div className="service-lead-card">
+                <div className="p-5 sm:p-6 mb-6 bg-accent-soft border-l-2 border-accent text-base sm:text-lg leading-relaxed text-ink font-medium rounded-r-brand">
                   <p>{leadParagraph}</p>
                 </div>
               ) : null}
 
               {supportingParagraphs.length > 0 ? (
-                <div className="service-body-paragraphs">
+                <div className="space-y-4 text-[15.5px] leading-relaxed text-ink-2">
                   {supportingParagraphs.map((para) => (
                     <p key={para}>{para}</p>
                   ))}
@@ -157,40 +157,40 @@ export default async function ServicePage({ params }: Params) {
 
             {/* Specialized Modules */}
             {service.innerPages && service.innerPages.length > 0 ? (
-              <section className="service-modules-section">
-                <span className="service-section-tag">
+              <section>
+                <span className="inline-block mb-3 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-medium">
                   Specialised Modules
                 </span>
-                <h3 className="service-block-heading">
+                <h3 className="text-xl sm:text-2xl font-semibold text-ink mb-2">
                   Inner platforms available under this service
                 </h3>
-                <p className="service-block-sub">
+                <p className="text-sm text-muted mb-6">
                   Modular tools designed to operate standalone or plugged directly into your existing infrastructure.
                 </p>
-                <div className="service-modules-grid">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {service.innerPages.map((inner) => (
                     <Link
                       key={inner.slug}
                       href={inner.href}
-                      className="service-module-card"
+                      className="group flex flex-col justify-between p-5 bg-paper border border-line rounded-brand hover:border-accent hover:shadow-card transition"
                     >
                       <div>
-                        <div className="service-module-card-top">
-                          <span className="service-module-kicker">
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="font-mono text-xs tracking-wider uppercase text-accent">
                             {inner.kicker}
                           </span>
-                          <span className="service-module-arrow">
+                          <span className="text-ink group-hover:text-accent transition">
                             <ArrowUpRight size={18} />
                           </span>
                         </div>
-                        <h4 className="service-module-title">
+                        <h4 className="text-base font-semibold text-ink group-hover:text-accent transition">
                           {inner.title}
                         </h4>
-                        <p className="service-module-desc">
+                        <p className="mt-1.5 text-xs sm:text-sm text-muted leading-relaxed">
                           {inner.description}
                         </p>
                       </div>
-                      <div className="service-module-foot">
+                      <div className="flex items-center justify-between gap-2 mt-4 pt-3 border-t border-line text-xs font-mono uppercase text-muted group-hover:text-accent transition">
                         <span>Explore platform capabilities</span>
                         <ArrowRight size={16} />
                       </div>
@@ -202,28 +202,28 @@ export default async function ServicePage({ params }: Params) {
 
             {/* Production Deliverables */}
             {service.deliverable && service.deliverable.length > 0 ? (
-              <section className="service-deliverables-section">
-                <span className="service-section-tag">
+              <section>
+                <span className="inline-block mb-3 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-medium">
                   Production Deliverables
                 </span>
-                <h3 className="service-block-heading">
+                <h3 className="text-xl sm:text-2xl font-semibold text-ink mb-2">
                   What we deliver & deploy
                 </h3>
-                <p className="service-block-sub">
+                <p className="text-sm text-muted mb-6">
                   Everything included in this solution from initial validation through to live operational rollout.
                 </p>
-                <div className="service-deliverables-grid">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-5">
                   {service.deliverable.map((item, idx) => (
-                    <div key={item} className="service-deliverable-card">
-                      <div className="service-deliverable-card-top">
-                        <span className="service-deliverable-card-num">
+                    <div key={item} className="flex items-start gap-3 p-4 bg-paper-tint border border-line rounded-brand">
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="font-mono text-xs text-accent font-semibold">
                           {String(idx + 1).padStart(2, "0")}
                         </span>
-                        <span className="service-deliverable-card-icon">
+                        <span className="text-accent">
                           <CheckIcon size={16} />
                         </span>
                       </div>
-                      <p className="service-deliverable-card-text">{item}</p>
+                      <p className="text-sm text-ink-2 font-medium leading-snug">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -232,32 +232,32 @@ export default async function ServicePage({ params }: Params) {
 
             {/* Delivery Shapes & Models */}
             {service.deliveryModels && service.deliveryModels.length > 0 ? (
-              <section className="service-deploy-section">
-                <span className="service-section-tag">
+              <section>
+                <span className="inline-block mb-3 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-medium">
                   Operational Architecture
                 </span>
-                <h3 className="service-block-heading">
+                <h3 className="text-xl sm:text-2xl font-semibold text-ink mb-2">
                   Delivery shapes & deployment models
                 </h3>
-                <p className="service-block-sub">
+                <p className="text-sm text-muted mb-6">
                   Flexible deployment patterns tailored to your security requirements, hosting preferences, and governance.
                 </p>
-                <div className="service-deploy-grid">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
                   {service.deliveryModels.map((model) => (
-                    <article className="service-deploy-card" key={model.title}>
-                      <span className="service-deploy-badge">
+                    <article className="p-5 bg-paper border border-line rounded-brand" key={model.title}>
+                      <span className="inline-block px-2.5 py-0.5 mb-2 bg-paper-tint border border-line rounded text-[11px] font-mono tracking-wider uppercase text-muted">
                         {model.subtitle}
                       </span>
-                      <h4 className="service-deploy-title">
+                      <h4 className="text-base font-semibold text-ink">
                         {model.title}
                       </h4>
-                      <p className="service-deploy-desc">
+                      <p className="mt-1 text-xs sm:text-sm text-muted">
                         {model.description}
                       </p>
-                      <ul className="service-deploy-list">
+                      <ul className="mt-4 space-y-2">
                         {model.points.map((point) => (
-                          <li key={point} className="service-deploy-item">
-                            <span className="service-deploy-icon">
+                          <li key={point} className="flex items-start gap-2 text-xs sm:text-sm text-ink-2 [&>span:first-child]:text-accent [&>span:first-child]:shrink-0 [&>span:first-child]:mt-0.5">
+                            <span>
                               <CheckIcon size={16} />
                             </span>
                             <span>{point}</span>
@@ -272,53 +272,52 @@ export default async function ServicePage({ params }: Params) {
           </main>
 
           {/* Sticky Sidebar Intelligence Dock */}
-          <aside className="service-sidebar-dock">
+          <aside className="flex flex-col gap-6 lg:sticky lg:top-[calc(var(--header-h)+24px)]">
             {/* Where It Fits */}
-            <div className="service-side-panel">
-              <div className="service-side-panel-header">
-                <h3>Where It Fits</h3>
-                <span className="service-side-panel-badge">{service.useCases.length} Workflows</span>
+            <div className="p-5 bg-paper-tint border border-line rounded-brand">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-line">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink">Where It Fits</h3>
+                <span className="font-mono text-xs text-accent">{service.useCases.length} Workflows</span>
               </div>
-              <ul className="service-fit-list">
+              <ul className="space-y-2.5">
                 {service.useCases.map((useCase) => (
-                  <li key={useCase} className="service-fit-item">
-                    <span className="service-fit-bullet" />
+                  <li key={useCase} className="flex items-center gap-2 text-xs sm:text-sm text-ink-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                     <span>{useCase}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-
             {/* Governance & Trust */}
             {service.trustNote ? (
-              <div className="service-trust-box">
-                <div className="service-trust-box-head">
-                  <span className="service-trust-box-icon">
+              <div className="p-5 bg-forest text-paper rounded-brand">
+                <div className="flex items-center gap-2.5 mb-3 text-mint font-semibold text-sm">
+                  <span className="text-mint">
                     <ShieldIcon size={18} />
                   </span>
                   <h3>Governance & Trust</h3>
                 </div>
-                <p className="service-trust-note">
+                <p className="text-xs sm:text-sm leading-relaxed text-white/80 mb-4">
                   {service.trustNote}
                 </p>
-                <div className="service-trust-tags">
-                  <span className="service-trust-tag">UK & EU Resident</span>
-                  <span className="service-trust-tag">Zero Model Training</span>
-                  <span className="service-trust-tag">Audit Logs</span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="px-2 py-0.5 bg-white/10 rounded text-[11px] font-mono text-mint">UK & EU Resident</span>
+                  <span className="px-2 py-0.5 bg-white/10 rounded text-[11px] font-mono text-mint">Zero Model Training</span>
+                  <span className="px-2 py-0.5 bg-white/10 rounded text-[11px] font-mono text-mint">Audit Logs</span>
                 </div>
               </div>
             ) : null}
 
             {/* Direct Consultation / Audit Card */}
-            <div className="service-side-action-card">
-              <h4 className="service-side-action-title">
+            <div className="p-5 bg-accent text-white rounded-brand">
+              <h4 className="text-base font-semibold leading-snug text-white">
                 Ready to evaluate on your data?
               </h4>
-              <p className="service-side-action-desc">
+              <p className="mt-1.5 text-xs text-white/80 leading-relaxed">
                 We test accuracy against your own ground-truth data before any rollout.
               </p>
-              <Link href="/contact" className="service-side-action-btn">
+              <Link href="/contact" className="inline-flex items-center justify-between w-full mt-4 px-4 py-2.5 bg-white text-ink font-medium text-xs rounded-brand hover:bg-paper-tint transition">
                 <span>Book an AI Audit</span>
                 <ArrowRight size={16} />
               </Link>
@@ -328,33 +327,33 @@ export default async function ServicePage({ params }: Params) {
 
         {/* Previous / Next Service Pagination */}
         <nav
-          className="case-pagination service-pagination"
+          className="grid grid-cols-2 border-t border-ink divide-x divide-line mt-14"
           aria-label="Services navigation"
         >
           {previous ? (
             <Link
-              className="case-page-link"
+              className="flex flex-col gap-2 py-6 pr-6 hover:text-accent transition"
               href={`/services/${previous.slug}`}
             >
-              <span>← Previous service</span>
-              <strong>{previous.title}</strong>
+              <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">← Previous service</span>
+              <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">{previous.title}</strong>
             </Link>
           ) : (
-            <Link className="case-page-link" href="/services">
-              <span>← All services</span>
-              <strong>Four ways we take work off your team</strong>
+            <Link className="flex flex-col gap-2 py-6 pr-6 hover:text-accent transition" href="/services">
+              <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">← All services</span>
+              <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">Four ways we take work off your team</strong>
             </Link>
           )}
 
           {next ? (
-            <Link className="case-page-link" href={`/services/${next.slug}`}>
-              <span>Next service →</span>
-              <strong>{next.title}</strong>
+            <Link className="flex flex-col gap-2 py-6 pl-6 text-right items-end hover:text-accent transition" href={`/services/${next.slug}`}>
+              <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">Next service →</span>
+              <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">{next.title}</strong>
             </Link>
           ) : (
-            <Link className="case-page-link" href="/contact">
-              <span>Start here →</span>
-              <strong>Book an AI Audit</strong>
+            <Link className="flex flex-col gap-2 py-6 pl-6 text-right items-end hover:text-accent transition" href="/contact">
+              <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">Start here →</span>
+              <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">Book an AI Audit</strong>
             </Link>
           )}
         </nav>

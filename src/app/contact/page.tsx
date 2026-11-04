@@ -33,39 +33,41 @@ export default function ContactPage() {
         ]}
       />
 
-      <section className="section" aria-label="Contact form">
-        <div className="container contact-grid">
+      <section className="relative py-16 md:py-24" aria-label="Contact form">
+        <div className="container grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-10 lg:gap-20 items-start">
           <ContactForm />
 
-          <aside className="contact-side">
-            <div className="contact-block">
-              <h2>What happens next.</h2>
-              <ol className="next-steps">
-                <li>
-                  <span className="step-index">01</span>
+          <aside className="flex flex-col gap-7.5">
+            <div>
+              <h2 className="max-w-[18ch] text-xl sm:text-2xl font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
+                What happens next.
+              </h2>
+              <ol className="mt-5 border-t border-ink divide-y divide-line">
+                <li className="grid grid-cols-[34px_1fr] gap-3 py-3.5">
+                  <span className="font-mono text-[15px] tracking-[0.08em] text-accent pt-0.5">01</span>
                   <div>
-                    <strong>We read it properly.</strong>
-                    <p>
+                    <strong className="block text-[15px] font-medium tracking-[-0.015em] text-ink">We read it properly.</strong>
+                    <p className="mt-1 text-[15px] leading-[1.5] text-muted">
                       Not a bot, not a qualification script. A senior member of
                       the team picks up the enquiry.
                     </p>
                   </div>
                 </li>
-                <li>
-                  <span className="step-index">02</span>
+                <li className="grid grid-cols-[34px_1fr] gap-3 py-3.5">
+                  <span className="font-mono text-[15px] tracking-[0.08em] text-accent pt-0.5">02</span>
                   <div>
-                    <strong>We suggest the right first step.</strong>
-                    <p>
+                    <strong className="block text-[15px] font-medium tracking-[-0.015em] text-ink">We suggest the right first step.</strong>
+                    <p className="mt-1 text-[15px] leading-[1.5] text-muted">
                       Usually a fixed-fee AI Audit. Sometimes a smaller proof of
                       concept on one process.
                     </p>
                   </div>
                 </li>
-                <li>
-                  <span className="step-index">03</span>
+                <li className="grid grid-cols-[34px_1fr] gap-3 py-3.5">
+                  <span className="font-mono text-[15px] tracking-[0.08em] text-accent pt-0.5">03</span>
                   <div>
-                    <strong>No obligation to build.</strong>
-                    <p>
+                    <strong className="block text-[15px] font-medium tracking-[-0.015em] text-ink">No obligation to build.</strong>
+                    <p className="mt-1 text-[15px] leading-[1.5] text-muted">
                       The audit is useful on its own. If we are not the right
                       fit, we will say so.
                     </p>
@@ -74,38 +76,38 @@ export default function ContactPage() {
               </ol>
             </div>
 
-            <div className="contact-direct">
-              <p>Direct contact</p>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-              <a className="contact-direct-phone" href={`tel:${site.phoneHref}`}>
+            <div className="p-5.5 bg-forest text-paper rounded-brand">
+              <p className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-mint">Direct contact</p>
+              <a className="inline-block mt-2 text-lg sm:text-xl font-medium leading-tight tracking-[-0.03em] text-paper border-b border-white/35 hover:text-mint hover:border-mint transition" href={`mailto:${site.email}`}>{site.email}</a>
+              <a className="block w-fit mt-1.5 font-mono text-[15px] tracking-[0.02em] text-mint hover:text-paper transition" href={`tel:${site.phoneHref}`}>
                 {site.phone}
               </a>
-              <address className="contact-direct-address">
+              <address className="mt-3.5 not-italic text-[15px] leading-[1.6] text-white/70">
                 {site.address.line1}, {site.address.line2}
                 <br />
                 {site.address.city}, {site.address.region}{" "}
                 {site.address.postcode}
               </address>
-              <p className="contact-direct-note">
+              <p className="mt-3.5 text-[15px] leading-[1.55] text-white/60">
                 References are available privately under NDA. Client names are
                 never published.
               </p>
             </div>
 
-            <ul className="contact-trust">
-              <li>
+            <ul className="pt-4.5 border-t border-line flex flex-col gap-2.5">
+              <li className="flex items-center gap-2.5 text-[15px] text-ink-2 [&>svg]:text-accent [&>svg]:shrink-0">
                 <ShieldIcon size={15} />
                 UK or EU-resident data processing
               </li>
-              <li>
+              <li className="flex items-center gap-2.5 text-[15px] text-ink-2 [&>svg]:text-accent [&>svg]:shrink-0">
                 <ShieldIcon size={15} />
                 NHS security questionnaire experience
               </li>
-              <li>
+              <li className="flex items-center gap-2.5 text-[15px] text-ink-2 [&>svg]:text-accent [&>svg]:shrink-0">
                 <CheckIcon size={15} />
                 DPIAs and infosec packs as standard
               </li>
-              <li>
+              <li className="flex items-center gap-2.5 text-[15px] text-ink-2 [&>svg]:text-accent [&>svg]:shrink-0">
                 <CheckIcon size={15} />
                 Human review built into every pipeline
               </li>
@@ -114,14 +116,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section--line" aria-labelledby="contact-faq">
-        <div className="container faq-grid">
-          <div className="faq-side">
+      <section className="relative py-16 md:py-24 border-t border-line" aria-labelledby="contact-faq">
+        <div className="container grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-24 items-start">
+          <div className="lg:sticky lg:top-[calc(var(--header-h)+36px)]">
             <SectionLabel>Before you write</SectionLabel>
-            <h2 id="contact-faq">
+            <h2 id="contact-faq" className="max-w-[12ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink mt-3">
               A few plain <em>answers.</em>
             </h2>
-            <p>
+            <p className="mt-4 text-[15px] leading-[1.6] text-muted">
               If your question is not here, put it in the form. We will answer
               it directly.
             </p>

@@ -10,6 +10,7 @@ import { site } from "@/content/site";
 import { PageHero } from "@/components/page-hero";
 import { CtaBand } from "@/components/cta-band";
 import {
+  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   CheckIcon,
@@ -96,221 +97,109 @@ export default async function ServiceInnerPage({ params }: Params) {
         ]}
       />
 
-      <div className="container service-detail-page">
-        <div className="service-back">
-          <Link href={`/services/${slug}`}>
-            ← Back to {innerPage.parentTitle}
+      <div className="container py-8 sm:py-12">
+        <div className="mb-8">
+          <Link
+            href={`/services/${slug}`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-accent transition"
+          >
+            <ArrowLeft size={16} />
+            Back to {innerPage.parentTitle}
           </Link>
         </div>
 
         {innerPage.stats && innerPage.stats.length > 0 ? (
-          <div
-            className="proof-block"
-            style={{ marginBottom: "clamp(32px, 4vw, 48px)" }}
-          >
-            <div className="proof-grid">
+          <div className="p-6 sm:p-8 mb-10 lg:mb-12 bg-paper-tint border border-line rounded-brand">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {innerPage.stats.map((stat) => (
-                <div className="proof-item" key={stat.label}>
-                  <div className="proof-value">{stat.value}</div>
-                  <div className="proof-label">{stat.label}</div>
+                <div className="p-4 bg-paper border border-line rounded-brand shadow-sm" key={stat.label}>
+                  <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">{stat.value}</div>
+                  <div className="mt-1 text-xs sm:text-sm text-muted leading-snug">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         ) : null}
 
-        <div className="service-detail-body service-detail-body--page">
-          <div className="service-detail-copy" style={{ gridColumn: "1" }}>
-            <div
-              style={{
-                padding: "24px 28px",
-                background: "var(--paper-raised)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius)",
-                marginBottom: "36px",
-              }}
-            >
-              <span
-                className="section-label"
-                style={{ marginBottom: "8px", display: "inline-block" }}
-              >
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-10 lg:gap-14 items-start">
+          <div className="space-y-10">
+            <div className="p-6 sm:p-7 bg-paper-raised border border-line rounded-brand">
+              <span className="inline-block mb-2 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-semibold">
                 Overview
               </span>
-              <p
-                style={{
-                  fontSize: "15px",
-                  lineHeight: 1.6,
-                  color: "var(--ink)",
-                  margin: "0 0 16px 0",
-                  fontWeight: 500,
-                }}
-              >
+              <p className="text-[15px] leading-relaxed text-ink font-medium mb-4">
                 {innerPage.description}
               </p>
-              <div
-                style={{
-                  paddingTop: "14px",
-                  borderTop: "1px solid var(--line)",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-code)",
-                    fontSize: "15px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: "var(--muted)",
-                    display: "block",
-                    marginBottom: "4px",
-                  }}
-                >
+              <div className="pt-3.5 border-t border-line">
+                <span className="block mb-1 font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-muted">
                   Target audience & operations
                 </span>
-                <p
-                  style={{
-                    fontSize: "15px",
-                    lineHeight: 1.55,
-                    color: "var(--ink-2)",
-                    margin: 0,
-                  }}
-                >
+                <p className="text-[15px] leading-relaxed text-ink-2">
                   {innerPage.audience}
                 </p>
               </div>
             </div>
 
-            <div style={{ marginBottom: "40px" }}>
-              <span
-                className="section-label"
-                style={{ marginBottom: "10px", display: "inline-block" }}
-              >
+            <div>
+              <span className="inline-block mb-2.5 font-mono text-xs sm:text-[13px] tracking-[0.08em] uppercase text-accent font-semibold">
                 How it works
               </span>
-              <h2
-                style={{
-                  fontSize: "clamp(22px, 2.5vw, 28px)",
-                  marginBottom: "24px",
-                }}
-              >
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-6">
                 Step-by-step process & workflow
               </h2>
 
-              <dl className="journey-list" style={{ marginTop: "16px" }}>
+              <dl className="mt-4 border-t border-line divide-y divide-line">
                 {innerPage.steps.map((step) => (
-                  <div key={step.step}>
-                    <dt>{step.step} · {step.title}</dt>
-                    <dd>{step.description}</dd>
+                  <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-4 py-4 items-baseline" key={step.step}>
+                    <dt className="font-mono text-xs sm:text-[13px] font-medium tracking-[0.05em] uppercase text-accent">
+                      {step.step} · {step.title}
+                    </dt>
+                    <dd className="text-[15px] leading-relaxed text-ink-2 m-0">
+                      {step.description}
+                    </dd>
                   </div>
                 ))}
               </dl>
             </div>
 
             {innerPage.proofLink ? (
-              <div
-                style={{
-                  padding: "20px 24px",
-                  background: "var(--paper-tint)",
-                  border: "1px solid var(--line-strong)",
-                  borderRadius: "var(--radius)",
-                  marginBottom: "40px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "16px",
-                  flexWrap: "wrap",
-                }}
-              >
+              <div className="flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6 bg-paper-tint border border-line-strong rounded-brand">
                 <div>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-code)",
-                      fontSize: "15px",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em",
-                      color: "var(--accent)",
-                      fontWeight: 600,
-                    }}
-                  >
+                  <span className="font-mono text-xs sm:text-[13px] tracking-[0.1em] uppercase text-accent font-semibold">
                     Measured Case Study
                   </span>
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: 500,
-                      color: "var(--ink)",
-                      margin: "4px 0 0 0",
-                    }}
-                  >
+                  <p className="mt-1 text-[15px] font-medium text-ink">
                     {innerPage.proofLink.text}
                   </p>
                 </div>
                 <Link
                   href={innerPage.proofLink.href}
-                  className="btn btn--accent"
-                  style={{ fontSize: "15px", padding: "8px 14px" }}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-brand hover:bg-accent-dark transition group"
                 >
                   Read case study
-                  <ArrowUpRight size={15} />
+                  <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
               </div>
             ) : null}
           </div>
 
-          <aside className="service-detail-side" style={{ gridColumn: "2" }}>
-            <div
-              className="service-side-block"
-              style={{
-                background: "var(--paper-raised)",
-                border: "1px solid var(--line)",
-                padding: "20px",
-                borderRadius: "var(--radius)",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  marginBottom: "14px",
-                }}
-              >
-                <span style={{ color: "var(--accent)", display: "inline-flex" }}>
+          <aside className="flex flex-col gap-6 lg:sticky lg:top-[calc(var(--header-h)+24px)]">
+            <div className="p-5 bg-paper-raised border border-line rounded-brand">
+              <div className="flex items-center gap-2 mb-3.5">
+                <span className="text-accent inline-flex">
                   <ShieldIcon size={16} />
                 </span>
-                <h2 style={{ margin: 0, fontSize: "16px" }}>
+                <h3 className="m-0 text-base font-semibold text-ink">
                   Governance & Compliance
-                </h2>
+                </h3>
               </div>
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
+              <ul className="flex flex-col gap-2.5">
                 {innerPage.governance.map((item) => (
                   <li
                     key={item}
-                    style={{
-                      display: "flex",
-                      gap: "8px",
-                      alignItems: "flex-start",
-                      fontSize: "15px",
-                      lineHeight: 1.45,
-                      color: "var(--ink-2)",
-                    }}
+                    className="flex items-start gap-2 text-sm leading-snug text-ink-2"
                   >
-                    <span
-                      style={{
-                        color: "var(--accent)",
-                        marginTop: "2px",
-                        flexShrink: 0,
-                        display: "inline-flex",
-                      }}
-                    >
+                    <span className="text-accent mt-0.5 shrink-0 inline-flex">
                       <CheckIcon size={15} />
                     </span>
                     <span>{item}</span>
@@ -320,46 +209,23 @@ export default async function ServiceInnerPage({ params }: Params) {
             </div>
 
             {siblingInnerPages.length > 0 ? (
-              <div className="service-side-block" style={{ marginTop: "24px" }}>
-                <h2>Also in {parentService.title}</h2>
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div className="p-5 bg-paper-raised border border-line rounded-brand">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted mb-3">
+                  Also in {parentService.title}
+                </h3>
+                <div className="flex flex-col gap-2.5">
                   {siblingInnerPages.map((sibling) => (
                     <Link
                       key={sibling.slug}
                       href={sibling.href}
-                      style={{
-                        padding: "12px 14px",
-                        background: "var(--paper-tint)",
-                        border: "1px solid var(--line)",
-                        borderRadius: "var(--radius)",
-                        textDecoration: "none",
-                        color: "inherit",
-                        display: "block",
-                      }}
+                      className="group block p-3 bg-paper-tint border border-line rounded-brand hover:border-accent transition"
                     >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-code)",
-                          fontSize: "15px",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.1em",
-                          color: "var(--accent)",
-                          display: "block",
-                        }}
-                      >
+                      <span className="block font-mono text-xs tracking-wider uppercase text-accent">
                         {sibling.kicker}
                       </span>
-                      <strong
-                        style={{
-                          fontSize: "15px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          marginTop: "2px",
-                        }}
-                      >
+                      <strong className="flex items-center justify-between text-sm text-ink group-hover:text-accent transition mt-0.5">
                         {sibling.title}
-                        <ArrowRight size={12} />
+                        <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                       </strong>
                     </Link>
                   ))}
@@ -367,34 +233,33 @@ export default async function ServiceInnerPage({ params }: Params) {
               </div>
             ) : null}
 
-            <div className="service-side-block" style={{ marginTop: "24px" }}>
-              <h2>Parent Service</h2>
+            <div className="p-5 bg-paper-tint border border-line rounded-brand">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted mb-2">Parent Service</h3>
               <Link
                 href={`/services/${slug}`}
-                className="text-link"
-                style={{ fontSize: "15px" }}
+                className="inline-flex items-center gap-2 pb-0.5 border-b border-line-strong text-sm font-medium text-ink hover:text-accent hover:border-accent transition group"
               >
                 View all of {parentService.title}
-                <ArrowRight size={13} />
+                <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
           </aside>
         </div>
 
         <nav
-          className="case-pagination service-pagination"
+          className="grid grid-cols-2 border-t border-ink divide-x divide-line mt-14"
           aria-label="Inner page navigation"
         >
           <Link
-            className="case-page-link"
+            className="flex flex-col gap-2 py-6 pr-6 hover:text-accent transition"
             href={`/services/${slug}`}
           >
-            <span>← Back to service</span>
-            <strong>{parentService.title}</strong>
+            <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">← Back to service</span>
+            <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">{parentService.title}</strong>
           </Link>
-          <Link className="case-page-link" href="/services">
-            <span>All services →</span>
-            <strong>Explore all four services</strong>
+          <Link className="flex flex-col gap-2 py-6 pl-6 text-right items-end hover:text-accent transition" href="/services">
+            <span className="font-mono text-xs sm:text-[13px] tracking-[0.09em] uppercase text-muted">All services →</span>
+            <strong className="max-w-[28ch] text-base sm:text-lg font-medium leading-snug tracking-[-0.025em]">Explore all four services</strong>
           </Link>
         </nav>
       </div>
