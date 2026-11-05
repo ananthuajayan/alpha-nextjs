@@ -24,11 +24,11 @@ export function PageHero({
       <div className="page-hero-grid" aria-hidden="true" />
       <div className="container">
         <div className="page-hero-main">
-          <div className="page-hero-copy">
-            <div className="page-hero-eyebrow">
+          <div className="page-hero-copy h-full flex flex-col">
+            <div className="page-hero-eyebrow self-start text-left">
               <SectionLabel>{eyebrow}</SectionLabel>
             </div>
-            <h1>{title}</h1>
+            <h1 className="my-auto text-left">{title}</h1>
           </div>
           <div className="page-hero-side">
             <p className="page-hero-deck">{deck}</p>
