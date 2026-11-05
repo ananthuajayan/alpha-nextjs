@@ -8,6 +8,7 @@ type CtaBandProps = {
   accent?: string;
   body?: string;
   note?: string;
+  titleClassName?: string;
 };
 
 export function CtaBand({
@@ -16,6 +17,7 @@ export function CtaBand({
   accent = "your business.",
   body = "Our AI Audit maps your processes, identifies the highest-ROI automations, and hands you a build-ready catalogue — whether you build with us or not.",
   note = "Fixed fee. Real data. No obligation to build.",
+  titleClassName = "",
 }: CtaBandProps) {
   const titleWithoutAccent = accent
     ? title.replace(accent, "").trimEnd()
@@ -26,7 +28,7 @@ export function CtaBand({
       <div className="container">
         <SectionLabel>{label}</SectionLabel>
         <div className="cta-band-grid">
-          <h2 id="cta-heading" data-reveal>
+          <h2 id="cta-heading" className={titleClassName} data-reveal>
             {titleWithoutAccent}{" "}
             {accent ? <em>{accent}</em> : null}
           </h2>

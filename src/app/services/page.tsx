@@ -83,12 +83,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="relative py-16 md:py-24 bg-paper-tint" aria-labelledby="model-heading">
+      <section className="relative py-16  bg-paper-tint" aria-labelledby="model-heading">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-end mb-10 lg:mb-14">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-8 lg:gap-20 items-center mb-10 lg:mb-14">
             <div>
               <SectionLabel>Two delivery models</SectionLabel>
-              <h2 id="model-heading" className="max-w-[16ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
+              <h2 id="model-heading" className="max-w-[18ch] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-[-0.045em] text-ink">
                 The right shape depends on <em>the work.</em>
               </h2>
             </div>
@@ -215,6 +215,7 @@ export default function ServicesPage() {
         title="Start with the work that is slowing everything else down."
         accent="slowing everything else down."
         body="A fixed-fee AI Audit maps your processes, tests the highest-value opportunity on your real data, and hands you a build-ready catalogue with ROI estimates."
+        titleClassName="!max-w-[22ch]"
       />
     </>
   );

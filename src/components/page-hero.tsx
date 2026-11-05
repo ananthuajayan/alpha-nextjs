@@ -23,9 +23,13 @@ export function PageHero({
     <header className="page-hero">
       <div className="page-hero-grid" aria-hidden="true" />
       <div className="container">
-        <SectionLabel>{eyebrow}</SectionLabel>
         <div className="page-hero-main">
-          <h1>{title}</h1>
+          <div className="page-hero-copy">
+            <div className="page-hero-eyebrow">
+              <SectionLabel>{eyebrow}</SectionLabel>
+            </div>
+            <h1>{title}</h1>
+          </div>
           <div className="page-hero-side">
             <p className="page-hero-deck">{deck}</p>
             {meta?.length ? (

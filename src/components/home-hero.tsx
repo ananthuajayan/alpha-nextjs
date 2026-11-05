@@ -1,395 +1,249 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import { ArrowRight, ArrowUpRight } from "@/components/icons";
-import { SectionLabel } from "@/components/section-label";
+import { useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
+import { ChevronDown } from "@/components/icons";
 
-export type HeroSolution = {
-  id: string;
-  menuTitle: string;
-  subtitle: string;
-  eyebrow: string;
-  title: string;
-  deck: string;
-  caption: string;
-  primaryCta: { label: string; href: string };
-  secondaryCta: { label: string; href: string };
-  highlightStatIndex?: number;
-  isBottomHighlight?: boolean;
-};
-
-const solutions: HeroSolution[] = [
+const accordionItems = [
   {
     id: "gp-operating-system",
-    menuTitle: "The AI operating system for GP practices",
-    subtitle:
-      "Phones, letters and paperwork, in one system your staff stay in charge of.",
-    eyebrow: "The AI operating system for GP practices",
     title: "The AI operating system for GP practices",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/gp-surgeries",
-    },
-    highlightStatIndex: 0,
+    content:
+      "Phones, letters and paperwork, in one system your staff stay in charge of.",
   },
   {
     id: "typing-paperwork",
-    menuTitle: "Typing up paperwork",
-    subtitle:
-      "Scanned forms, invoices and delivery notes turned into checked data.",
-    eyebrow: "Typing up paperwork",
     title: "Typing up paperwork",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/data-extraction",
-    },
-    highlightStatIndex: 1,
+    content:
+      "Scanned forms, invoices and delivery notes turned into checked data.",
   },
   {
     id: "answering-phones",
-    menuTitle: "Answering the phones",
-    subtitle:
-      "Every call picked up and summarised. Urgent ones go straight to a person.",
-    eyebrow: "Answering the phones",
     title: "Answering the phones",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/gp-surgeries/voice-agents",
-    },
-    highlightStatIndex: 0,
+    content:
+      "Every call picked up and summarised. Urgent ones go straight to a person.",
   },
   {
     id: "sorting-letters",
-    menuTitle: "Sorting letters and referrals",
-    subtitle:
-      "Incoming post read, sorted and queued for your team to approve.",
-    eyebrow: "Sorting letters and referrals",
     title: "Sorting letters and referrals",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/gp-surgeries",
-    },
-    highlightStatIndex: 0,
+    content:
+      "Incoming post read, sorted and queued for your team to approve.",
   },
   {
     id: "customer-emails",
-    menuTitle: "Replying to customer emails",
-    subtitle: "Draft replies written for you. Your team checks and sends.",
-    eyebrow: "Replying to customer emails",
     title: "Replying to customer emails",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/other-work/deflect",
-    },
-    highlightStatIndex: 2,
+    content:
+      "Draft replies written for you. Your team checks and sends.",
   },
   {
     id: "pricing-building-work",
-    menuTitle: "Pricing up building work",
-    subtitle: "Bills of quantities drawn from plans in days, not weeks.",
-    eyebrow: "Pricing up building work",
     title: "Pricing up building work",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/other-work/bqai",
-    },
-    highlightStatIndex: 1,
+    content:
+      "Bills of quantities drawn from plans in days, not weeks.",
   },
   {
     id: "orthodontic-referrals",
-    menuTitle: "Orthodontic referrals",
-    subtitle:
-      "Guided patient photos, with a clinician signing off. In clinical validation.",
-    eyebrow: "Orthodontic referrals",
     title: "Orthodontic referrals",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/services/orthodontics",
-    },
-    highlightStatIndex: 0,
-  },
-  {
-    id: "not-sure-where-to-start",
-    menuTitle: "Not sure where to start?",
-    subtitle: "Most owners aren't. We'll look at your week and tell you.",
-    eyebrow: "For businesses where the owner still reads the invoices",
-    title: "AI that helps your business make more profit.",
-    deck: "We find the jobs that eat your team's time, hand them to AI, and keep a person on anything that matters.",
-    caption:
-      "Specialists in regulated industries and open-source AI. No jargon, no obligation, just a straight answer on whether AI is worth it for a business your size.",
-    primaryCta: { label: "Book a chat", href: "/contact" },
-    secondaryCta: {
-      label: "See what we've done for others",
-      href: "/case-studies",
-    },
-    isBottomHighlight: true,
+    content:
+      "Guided patient photos, with a clinician signing off. In clinical validation.",
   },
 ];
 
 const stats = [
-  { value: "£60k a year", label: "saved at a GP group" },
-  { value: "98.3%", label: "of a batch done with no one typing" },
-  { value: "7 to 5", label: "helpdesk staff needed" },
+  {
+    value: "£60k a year",
+    label: "saved at a GP group",
+  },
+  {
+    value: "98.3%",
+    label: "of a batch done with no one typing",
+  },
+  {
+    value: "7 to 5",
+    label: "helpdesk staff needed",
+  },
 ];
 
 export function HomeHero() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isPending, startTransition] = useTransition();
-  const [isMobile, setIsMobile] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const touchStartXRef = useRef<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const triggerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const activeSolution = solutions[selectedIndex] ?? solutions[0];
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const last = accordionItems.length - 1;
+    let next: number | null = null;
 
-  // Screen size check for mobile layout & auto-slider
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 960);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    if (e.key === "ArrowDown") next = index === last ? 0 : index + 1;
+    else if (e.key === "ArrowUp") next = index === 0 ? last : index - 1;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = last;
 
-  const handleSelect = useCallback(
-    (index: number) => {
-      startTransition(() => {
-        setSelectedIndex(index);
-      });
-    },
-    [startTransition]
-  );
-
-  const handlePrev = useCallback(() => {
-    startTransition(() => {
-      setSelectedIndex((prev) => (prev - 1 + solutions.length) % solutions.length);
-    });
-  }, [startTransition]);
-
-  const handleNext = useCallback(() => {
-    startTransition(() => {
-      setSelectedIndex((prev) => (prev + 1) % solutions.length);
-    });
-  }, [startTransition]);
-
-  // Auto-play slider on mobile (5.5s interval)
-  useEffect(() => {
-    if (!isMobile || isPaused) return;
-
-    const timer = setInterval(() => {
-      handleNext();
-    }, 5500);
-
-    return () => clearInterval(timer);
-  }, [isMobile, isPaused, handleNext, selectedIndex]);
-
-  // Touch gesture support for mobile swiping
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsPaused(true);
-    touchStartXRef.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    setIsPaused(false);
-    if (touchStartXRef.current === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartXRef.current - touchEndX;
-
-    // Minimum swipe threshold: 40px
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
-        handleNext();
-      } else {
-        handlePrev();
-      }
+    if (next !== null) {
+      e.preventDefault();
+      triggerRefs.current[next]?.focus();
     }
-    touchStartXRef.current = null;
   };
 
   return (
-    <header className="page-hero home-hero">
+    <header className="page-hero relative pt-12 pb-16 md:pt-16 md:pb-20 overflow-hidden">
       <div className="page-hero-grid" aria-hidden="true" />
 
-      <div className="container">
-        <div className="home-hero-split">
-          {/* LEFT SIDE CONTENT & MOBILE SLIDER */}
-          <div
-            className="home-hero-left"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div
-              key={activeSolution.id}
-              className="home-hero-slide-content"
-              data-pending={isPending ? "true" : "false"}
-            >
-              <div className="home-hero-eyebrow-box">
-                <SectionLabel>{activeSolution.eyebrow}</SectionLabel>
-              </div>
+      <div className="container relative z-1">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.18fr_0.82fr] gap-10 lg:gap-14 xl:gap-20 items-start">
+          {/* LEFT SIDE CONTENT (STATIC) */}
+          <div className="max-w-[620px]">
+            <p className="text-xs sm:text-sm font-medium tracking-normal text-muted mb-3 sm:mb-4">
+              For businesses where the owner still reads the invoices
+            </p>
 
-              <h1 className="home-hero-title">
-                {activeSolution.title}
-              </h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[58px] font-bold tracking-[-0.035em] text-ink leading-[1.08] mb-5">
+              AI that helps
+              <br />
+              your business
+              <br />
+              make more profit.
+            </h1>
 
-              {/* Subtitle from the selected item */}
-              <p className="home-hero-selected-subtitle">
-                {activeSolution.subtitle}
-              </p>
+            <p className="text-[15px] sm:text-base leading-[1.65] text-ink-2 max-w-[52ch] mb-7">
+              You didn't start your business to spend your evenings on
+              paperwork, or to pay good people to retype things. We find the
+              jobs that eat your team's time, hand them to AI, and keep a person
+              on anything that matters. More of every pound you earn ends up as
+              profit.
+            </p>
 
-              <p className="home-hero-deck">
-                {activeSolution.deck}
-              </p>
-
-              <div className="home-hero-actions">
-                <Link
-                  className="btn btn--accent btn--lg home-hero-btn"
-                  href={activeSolution.primaryCta.href}
-                >
-                  {activeSolution.primaryCta.label}
-                  <ArrowUpRight size={15} />
-                </Link>
-                <Link
-                  className="home-hero-text-link"
-                  href={activeSolution.secondaryCta.href}
-                >
-                  {activeSolution.secondaryCta.label}
-                  <ArrowRight size={15} />
-                </Link>
-              </div>
-
-              <p className="home-hero-caption">
-                {activeSolution.caption}
-              </p>
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-5 sm:gap-7 mb-7">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium text-[15px] rounded-brand hover:opacity-95 transition shadow-sm"
+              >
+                Book a chat
+              </Link>
+              <Link
+                href="/case-studies"
+                className="inline-flex items-center text-accent underline underline-offset-4 font-medium text-[15px] hover:opacity-85 transition"
+              >
+                See what we've done for others
+              </Link>
             </div>
 
-            {/* MOBILE SLIDER DOTS (Only visible <= 960px) */}
-            <div
-              className="home-hero-slider-bar"
-              aria-label="Solutions carousel"
-            >
-              <div
-                className="home-hero-slider-dots"
-                role="tablist"
-                aria-label="Choose solution"
-              >
-                {solutions.map((item, idx) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={idx === selectedIndex}
-                    aria-label={`Solution ${idx + 1}: ${item.menuTitle}`}
-                    className={`home-hero-slider-dot ${
-                      idx === selectedIndex ? "home-hero-slider-dot--active" : ""
-                    }`}
-                    onClick={() => handleSelect(idx)}
-                  />
-                ))}
-              </div>
+            {/* CAPTION */}
+            <p className="text-[13px] sm:text-sm leading-relaxed text-muted max-w-[50ch] mb-8 lg:mb-10">
+              Specialists in regulated industries and open-source AI. No jargon,
+              no obligation, just a straight answer on whether AI is worth it for
+              a business your size.
+            </p>
+
+            {/* STATS */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-line">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="text-2xl sm:text-[26px] font-bold tracking-tight text-ink">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-[13px] text-muted mt-1 leading-snug">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* RIGHT SIDE MENU CARD: ONLY TITLES (Hidden on mobile via CSS) */}
-          <nav
-            className="home-hero-menu-card"
+          {/* RIGHT SIDE ACCORDION CARD */}
+          <aside
+            className="w-full bg-white rounded-xl sm:rounded-2xl shadow-card overflow-hidden"
             aria-label="What we can take off your plate"
           >
-            <div className="home-hero-menu-header">
-              <h2>What we can take off your plate</h2>
+            {/* Header */}
+            <div className="px-5 bg-accent  pt-5 pb-2 sm:px-6 sm:pt-6 sm:pb-3 ">
+              <h2 className="text-[15px] sm:text-base font-semibold tracking-normal text-white">
+                What we can take off your plate
+              </h2>
             </div>
 
-            <div className="home-hero-menu-list">
-              {solutions.map((item, index) => {
-                const isSelected = selectedIndex === index;
-
-                if (item.isBottomHighlight) {
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className={`home-hero-menu-item home-hero-menu-item--bottom ${
-                        isSelected ? "home-hero-menu-item--active" : ""
-                      }`}
-                      onClick={() => handleSelect(index)}
-                      aria-pressed={isSelected}
-                    >
-                      <span className="home-hero-menu-title">
-                        {item.menuTitle}
-                      </span>
-                      <ArrowRight size={14} className="home-hero-menu-arrow" />
-                    </button>
-                  );
-                }
+            {/* Accordion list */}
+            <div className="bg-transparent">
+              {accordionItems.map((item, index) => { 
+                const isOpen = openIndex === index;
+                const triggerId = `${item.id}-trigger`;
+                const panelId = `${item.id}-panel`;
 
                 return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`home-hero-menu-item ${
-                      isSelected ? "home-hero-menu-item--active" : ""
-                    }`}
-                    onClick={() => handleSelect(index)}
-                    aria-pressed={isSelected}
-                  >
-                    <span className="home-hero-menu-title">
-                      {item.menuTitle}
-                    </span>
-                    <ArrowRight size={14} className="home-hero-menu-arrow" />
-                  </button>
+                  <div key={item.id} className="bg-transparent">
+                    <h3>
+                      <button
+                        ref={(el) => {
+                          triggerRefs.current[index] = el;
+                        }}
+                        id={triggerId}
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        onClick={() => setOpenIndex(isOpen ? null : index)}
+                        onKeyDown={(e) => handleKeyDown(e, index)}
+                        className="group w-full text-left px-5 py-3.5 sm:px-6 sm:py-4 flex items-center justify-between gap-3 bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+                      >
+                        <span
+                          className={`text-[14px] sm:text-[15px] leading-snug transition-colors duration-200 ${
+                            isOpen
+                              ? "text-accent font-semibold"
+                              : "text-ink font-medium group-hover:text-accent"
+                          }`}
+                        >
+                          {item.title}
+                        </span>
+                        <ChevronDown
+                          size={15}
+                          aria-hidden="true"
+                          className={`shrink-0 transition-transform duration-300 ease-out ${
+                            isOpen
+                              ? "rotate-180 text-accent"
+                              : "text-muted group-hover:text-ink"
+                          }`}
+                        />
+                      </button>
+                    </h3>
+
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={triggerId}
+                      aria-hidden={!isOpen}
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden min-h-0">
+                        <p
+                          className={`px-5 pb-4 sm:px-6 sm:pb-5 text-[13px] sm:text-[15px] leading-relaxed text-muted transition-all duration-300 ease-out ${
+                            isOpen
+                              ? "opacity-100 translate-y-0"
+                              : "opacity-0 -translate-y-1"
+                          }`}
+                        >
+                          {item.content}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
-          </nav>
-        </div>
 
-        {/* STATS - SPANS FULL WIDTH UNDERNEATH */}
-        <div className="home-hero-stats" aria-label="What clients have seen">
-          {stats.map((stat, i) => {
-            const isHighlighted =
-              activeSolution.highlightStatIndex === undefined ||
-              activeSolution.highlightStatIndex === i;
-            return (
-              <div
-                key={stat.label}
-                className="home-hero-stat-col"
-                data-highlight={isHighlighted ? "true" : "false"}
-              >
-                <strong className="home-hero-stat-value">{stat.value}</strong>
-                <span className="home-hero-stat-label">{stat.label}</span>
+            {/* Bottom Callout Banner */}
+            <Link
+              href="/contact"
+              className="block bg-accent text-white p-5 sm:p-6 transition hover:opacity-95 group"
+            >
+              <div className="font-semibold text-white text-[15px] sm:text-base tracking-normal group-hover:underline">
+                Not sure where to start?
               </div>
-            );
-          })}
+              <div className="text-xs sm:text-[13px] text-white/90 mt-1 leading-snug">
+                Most owners aren't. We'll look at your week and tell you.
+              </div>
+            </Link>
+          </aside>
         </div>
       </div>
     </header>

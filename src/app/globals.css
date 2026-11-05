@@ -1521,7 +1521,7 @@ svg {
 }
 
 .cta-band h2 {
-  max-width: 14ch;
+  max-width: 20ch;
   font-size: clamp(2.3rem, 4.7vw, 4.3rem);
   line-height: 0.97;
   letter-spacing: -0.05em;
@@ -1593,14 +1593,26 @@ svg {
 }
 
 .page-hero .eyebrow {
-  margin-bottom: clamp(26px, 3vw, 38px);
+  margin-bottom: clamp(12px, 1.5vw, 16px);
+}
+
+.page-hero-eyebrow {
+  margin-bottom: clamp(12px, 1.5vw, 16px);
+}
+
+.page-hero-eyebrow .eyebrow {
+  margin-bottom: 0;
+}
+
+.page-hero-copy {
+  min-width: 0;
 }
 
 .page-hero-main {
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;
   gap: clamp(36px, 6vw, 84px);
-  align-items: end;
+  align-items: start;
 }
 
 .page-hero h1 {
